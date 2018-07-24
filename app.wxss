@@ -1,0 +1,110 @@
+/**app.wxss**/
+
+/* 顶部按钮 */
+
+page {
+  background-color: #f5f5f5;
+}
+
+.page-top-position {
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+}
+
+.page-top {
+  width: 750rpx;
+  height: 100rpx;
+  background-color: #e31c17;
+}
+
+.page-top-title {
+  font-family: PingFangSC-Semibold;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 0.35px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.search-background {
+  position: relative;
+  width: 750rpx;
+  background-color: #e31c17;
+}
+
+.search-icon {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 23rpx;
+  left: 123rpx;
+  z-index: 50;
+}
+
+.search-border {
+  width: 710rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+  background-color: #fff;
+  border-radius: 40rpx;
+  /* text-align: center; *//* text-indent: 100rpx; */
+}
+
+.input-style {
+  width: 500rpx;
+  height: 80rpx;
+  margin-left: 150rpx;
+  font-size: 28rpx;
+}
+
+/* ---------------------------------- */
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+/*一行文字*/
+
+.text-oneline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-twoline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-threeline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-fourline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.center-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,43 @@
+<!--pages/search/search.wxml-->
+<cover-view class='page-top-position'>
+  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view class="page-top center-style" style='position: relative'>
+    <cover-view class='page-top-title'>美景听听</cover-view>
+    <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
+      <cover-image src='../../images/back.png' style='width:50rpx;height:40rpx;position: absolute;top: 30rpx;left: 45rpx;'></cover-image>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
+<view class='search-background' style='position: fixed;top:{{place}}rpx;'>
+  <view class='search-border'>
+    <input class='input-style' placeholder-style="font-size:28rpx;" maxlength="15" placeholder="搜索地区、景区、景点(中英文均可）"></input>
+    <image src='../../images/search.png' class='search-icon'></image>
+  </view>
+  <view style='height:25rpx;background-color: #e31c17;'></view>
+</view>
+
+<view style='height:{{allHeight}}rpx'></view>
+
+<view style='width:750rpx;padding:0rpx 25rpx;margin-top:30rpx;'>
+  <view style='font-family: PingFangSC-Medium;font-size: 18px;color: #333333;letter-spacing: 1px;'>搜索历史</view>
+
+  <view style='margin-top:20rpx;height:72rpx;overflow:hidden;'>
+    <view class='search-history'>法国</view>
+    <view class='search-history'>法国</view>
+    <view class='search-history'>法国</view>
+    <view class='search-history'>法国</view>
+    <view class='search-history'>法国</view>
+    <view class='search-history'>法国</view>
+    <view class='search-history'>法国</view>
+  </view>
+
+</view>
+
+<view style='width:750rpx;padding:0rpx 25rpx;margin-top:40rpx;'>
+  <view class='navigation flex-row' bindtap='switchNavigation'>
+    <view id="1" class='navigation-index' style="{{cityNavigation == 1 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国内国家</view>
+    <view id="2" class='navigation-index' style="{{cityNavigation == 2 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国际国家</view>
+    <view id="3" class='navigation-index' style="{{cityNavigation == 3 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国家</view>
+  </view>
+</view>

@@ -1,0 +1,106 @@
+<!--index.wxml-->
+<cover-view class='page-top-position'>
+  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view class="page-top center-style">
+    <cover-view class='page-top-title'>美景听听</cover-view>
+  </cover-view>
+</cover-view>
+
+<cover-view class='search-background' style='position: fixed;top:{{place}}rpx;'>
+  <cover-view class='search-border' bindtap='jumpSearch'>
+    <cover-view class='input-style' style='font-size: 28rpx;color: #A4A4A4;line-height:80rpx;'>搜索地区、景区、景点(中英文均可）</cover-view>
+    <cover-image src='../../images/search.png' class='search-icon'></cover-image>
+  </cover-view>
+  <cover-view style='height:25rpx;background-color: #e31c17;'></cover-view>
+</cover-view>
+
+<view style='height:{{allHeight}}rpx'></view>
+
+<swiper indicator-dots="true" indicator-color="#FFFFFF" indicator-active-color="#e31c17" autoplay="true" interval="4000" duration="600" style="height:316rpx" circular="true">
+  <block wx:for="{{Ads}}" wx:key="*this">
+    <swiper-item>
+      <image src="{{item.img}}" style='width:750rpx;height:316rpx;' width="750rpx" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class='flex-row' style='margin-top:30rpx;'>
+
+  <view style='width:280rpx;height:90rpx;background: #FFFFFF;box-shadow: 0 2px 4px 0 rgba(210,210,210,0.50);border-radius: 100px;margin-left:80rpx;' class='flex-row'>
+    <image src='../../images/destination.png' style='width:50rpx;height:55.2rpx;margin-left:45rpx;margin-top:20rpx;'></image>
+    <view class='middle-button'>目的地</view>
+  </view>
+
+  <view style='width:280rpx;height:90rpx;background: #FFFFFF;box-shadow: 0 2px 4px 0 rgba(210,210,210,0.50);border-radius: 100px;margin-left:30rpx;' class='flex-row'>
+    <image src='../../images/my.png' style='width:50rpx;height:55.2rpx;margin-left:45rpx;margin-top:20rpx;'></image>
+
+    <view class='middle-button'>我的</view>
+
+  </view>
+
+</view>
+
+<view style='width:750rpx;position: relative;margin-top:40rpx;' class='center-style'>
+  <view>热门城市</view>
+  <view style='height:2rpx;width:240rpx;background-color:#e0e0e0;position: absolute;top:25rpx;left:40rpx;'></view>
+  <view style='height:2rpx;width:240rpx;background-color:#e0e0e0;position: absolute;top:25rpx;right:40rpx;'></view>
+</view>
+
+<view style='margin-top:10rpx;width:750rpx;overflow:hidden;'>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>北京</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>新加坡</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>北京</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>北京</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>北京</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>北京</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>北京</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>重庆</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>马来西亚</view>
+  </view>
+  <view style='width:20%;float:left;' class='center-style;'>
+    <view class='city-button'>上海</view>
+  </view>
+</view>
+
+<view style='margin-top:50rpx;width:750rpx;' class='center-style'>
+  <view style='width:400rpx;height:80rpx;background: #E31C17;box-shadow: 0 2px 4px 0 rgba(210,210,210,0.50);border-radius: 100px;' class='flex-row'>
+    <image src='../../images/destination.png' style='width:40rpx;height:40rpx;margin-left:130rpx;margin-top:20rpx;'></image>
+    <view style='font-family: PingFang-SC-Medium;font-size: 18px;color: #FFFFFF;letter-spacing: -0.94px;line-height:80rpx;margin-left:20rpx;'>北京</view>
+  </view>
+</view>
+
+
+
+<view style='margin:10rpx 25rpx;overflow:hidden;'>
+
+  <block wx:for="{{8}}">
+    <view style='width:50%;float:left;margin-top:20rpx;position: relative;'>
+
+      <image src='http://twst.isart.me/o_1cfsgrrjinhlgm61gdfjsm1bqb9.png' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
+      <view style='font-size: 28rpx;text-align:center;'>故宫</view>
+      <image src='../../images/explain.png' style='position: absolute;top: 20rpx;left: 0rpx;width:136rpx;height:48rpx;'></image>
+      <view style='position: absolute;top: 32rpx;left: 15rpx;font-size:24rpx;color:#fff;'>15处介绍</view>
+      <image src='../../images/play.png' style='position: absolute;top: 100rpx;left: 140rpx;width:60rpx;height:60rpx;'></image>
+    </view>
+  </block>
+
+</view>
+
+<view style='height:100rpx;'></view>

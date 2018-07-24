@@ -1,0 +1,25 @@
+/**index.wxss**/
+
+.middle-button {
+  font-family: PingFangSC-Semibold;
+  font-size: 18px;
+  color: #333;
+  letter-spacing: 0.29px;
+  text-align: center;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.city-button {
+  line-height: 60rpx;
+  background-color: #e8e8e8;
+  padding: 0rpx 15rpx;
+  margin-top: 20rpx;
+  font-family: PingFang-SC-Regular;
+  font-size: 28rpx;
+  color: #666;
+  letter-spacing: 0.22px;
+  background: #e8e8e8;
+  border: 1px solid #f0f0f0;
+  border-radius: 3px;
+}
