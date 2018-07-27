@@ -32,12 +32,84 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
 					"name": "搜索页面",
 					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "国家页",
+					"pathName": "pages/country/country",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "城市页",
+					"pathName": "pages/city/city",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "城市地图",
+					"pathName": "pages/cityMap/cityMap",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付页面",
+					"pathName": "pages/pay/pay",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付失败页面",
+					"pathName": "pages/payFail/payFail",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "我的页面",
+					"pathName": "pages/myPage/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的已购",
+					"pathName": "pages/myPage/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "联系我们",
+					"pathName": "pages/myPage/contactUs/contactUs",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设置",
+					"pathName": "pages/myPage/Setting/Setting",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "选择城市",
+					"pathName": "pages/selectCity/selectCity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "景区地图",
+					"pathName": "pages/scenicMap/scenicMap",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "景点地图",
+					"pathName": "pages/scenicMap/scenicMap",
 					"query": ""
 				}
 			]

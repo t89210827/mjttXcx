@@ -31,9 +31,34 @@ Page({
     })
   },
 
-
+  // 跳转到搜索页面
   jumpSearch: function() {
     util.jumpPage(1, "/pages/search/search")
+  },
+
+  // 跳转到我的页面
+  jumpMyPage: function() {
+    util.jumpPage(1, "/pages/myPage/index/index")
+  },
+
+  // 跳转到城市页面
+  jumpCityPage: function() {
+    util.jumpPage(1, "/pages/city/city")
+  },
+
+  // 跳转到城市地图页面
+  jumpCityMapPage: function() {
+    util.jumpPage(1, "/pages/cityMap/cityMap")
+  },
+
+  // 跳转到景点地图页面
+  jumpscenicMapPage: function() {
+    util.jumpPage(1, "/pages/scenicMap/scenicMap")
+  },
+
+  // 跳转到城市选择页面
+  jumpSelectCity: function() {
+    util.jumpPage(1, "/pages/selectCity/selectCity")
   }
 
 })

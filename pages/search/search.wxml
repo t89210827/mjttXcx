@@ -9,9 +9,9 @@
   </cover-view>
 </cover-view>
 
-<view class='search-background' style='position: fixed;top:{{place}}rpx;'>
+<view class='search-background' style='position: fixed;top:{{place}}rpx;z-index:1000'>
   <view class='search-border'>
-    <input class='input-style' placeholder-style="font-size:28rpx;" maxlength="15" placeholder="搜索地区、景区、景点(中英文均可）"></input>
+    <input class='input-style' placeholder-style="font-size:28rpx;" maxlength="15" placeholder="搜索地区、景区、景点(中英文均可）" bindfocus="focus" bindblur="loseFocus"></input>
     <image src='../../images/search.png' class='search-icon'></image>
   </view>
   <view style='height:25rpx;background-color: #e31c17;'></view>
@@ -19,25 +19,88 @@
 
 <view style='height:{{allHeight}}rpx'></view>
 
-<view style='width:750rpx;padding:0rpx 25rpx;margin-top:30rpx;'>
-  <view style='font-family: PingFangSC-Medium;font-size: 18px;color: #333333;letter-spacing: 1px;'>搜索历史</view>
-
-  <view style='margin-top:20rpx;height:72rpx;overflow:hidden;'>
-    <view class='search-history'>法国</view>
-    <view class='search-history'>法国</view>
-    <view class='search-history'>法国</view>
-    <view class='search-history'>法国</view>
-    <view class='search-history'>法国</view>
-    <view class='search-history'>法国</view>
-    <view class='search-history'>法国</view>
+<block wx:if="{{inputFocus}}">
+  <view>
+    <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #A4A4A4;letter-spacing: 0.22px;line-height:100rpx;margin-left:40rpx;'>[城市]</text>
+    <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #151515;line-height:100rpx;margin-left:20rpx;'>莫斯科</text>
+    <text style='font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666666;line-height:100rpx;margin-left:10rpx;'>(俄罗斯)</text>
   </view>
 
-</view>
+  <view style='width:750rpx;height:2rpx;background:#ebebeb;'></view>
 
-<view style='width:750rpx;padding:0rpx 25rpx;margin-top:40rpx;'>
-  <view class='navigation flex-row' bindtap='switchNavigation'>
-    <view id="1" class='navigation-index' style="{{cityNavigation == 1 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国内国家</view>
-    <view id="2" class='navigation-index' style="{{cityNavigation == 2 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国际国家</view>
-    <view id="3" class='navigation-index' style="{{cityNavigation == 3 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国家</view>
+  <view>
+    <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #A4A4A4;letter-spacing: 0.22px;line-height:100rpx;margin-left:40rpx;'>[景区]</text>
+    <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #151515;line-height:100rpx;margin-left:20rpx;'>莫泽玻璃博物馆</text>
+    <text style='font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666666;line-height:100rpx;margin-left:10rpx;'>(捷克-卡罗维发利)</text>
   </view>
-</view>
+
+  <view style='width:750rpx;height:2rpx;background:#ebebeb;'></view>
+
+  <view>
+    <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #A4A4A4;letter-spacing: 0.22px;line-height:100rpx;margin-left:40rpx;'>[城市]</text>
+    <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #151515;line-height:100rpx;margin-left:20rpx;'>莫斯科</text>
+    <text style='font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666666;line-height:100rpx;margin-left:10rpx;'>(俄罗斯)</text>
+  </view>
+
+  <view style='width:750rpx;height:2rpx;background:#ebebeb;'></view>
+
+</block>
+
+<block wx:if="{{!inputFocus}}">
+  <!-- 搜索历史 -->
+  <view style='width:750rpx;margin-top:30rpx;'>
+    <view style='margin:0rpx 25rpx;'>
+      <view style='font-family: PingFangSC-Medium;font-size: 18px;color: #333333;letter-spacing: 1px;'>搜索历史</view>
+      <view style='margin-top:20rpx;height:72rpx;overflow:hidden;'>
+        <view class='search-history'>法国</view>
+        <view class='search-history'>法国</view>
+        <view class='search-history'>法国</view>
+        <view class='search-history'>法国</view>
+        <view class='search-history'>法国</view>
+        <view class='search-history'>法国</view>
+        <view class='search-history'>飞回回家</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 地区导航 -->
+  <view style='width:750rpx;margin-top:40rpx;'>
+    <view class='navigation flex-row' style='margin:0rpx 25rpx;' bindtap='switchNavigation'>
+      <view id="1" class='navigation-index' style="{{cityNavigation == 1 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国内国家</view>
+      <view id="2" class='navigation-index' style="{{cityNavigation == 2 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国际国家</view>
+      <view id="3" class='navigation-index' style="{{cityNavigation == 3 ? 'color: #fff;background-image: linear-gradient(-179deg, #fa6161 0%, #ff8f5f 100%);box-shadow: 0 0 3px 0 rgba(227, 60, 23, 0.50);' : 'color: #666;'}}">国家</view>
+    </view>
+  </view>
+
+  <view style='height:20rpx;'></view>
+
+  <!-- 滚动的地区 -->
+  <view style='width:100%;overflow:hidden;'>
+    <scroll-view scroll-y style="width:860rpx;height:{{scrollHeight}}rpx;" scroll-with-animation="{{true}}" bindscroll="scroll" scroll-into-view="{{areaInitialIndex}}">
+      <block wx:for="{{areaInitial}}">
+        <view style='margin-left:25rpx;margin-top:20rpx;width:670rpx;' id="{{item}}">
+          <view style='font-family: PingFangSC-Medium;font-size: 36rpx;color: #BCBCBC;letter-spacing: 1px;line-height:50rpx;border-bottom:1rpx #E8E8E8 solid;'>{{item}}</view>
+          <view style='margin-left:30rpx;overflow:hidden;'>
+            <block wx:for="{{6}}">
+              <view style='font-family: PingFang-SC-Regular;font-size: 32rpx;color: #666666;letter-spacing: 0.89px;margin-left:20rpx;float:left;margin-top:20rpx;' bindtap='jumpCountryPage'>阿尔山</view>
+            </block>
+          </view>
+        </view>
+      </block>
+      <view style='height:800rpx;'></view>
+    </scroll-view>
+  </view>
+
+  <!-- 右侧地区首字母 -->
+  <view class='areaInitial' bindtouchstart='areaSelectStart' bindtouchend='areaSelectEnd' style='margin-top:30rpx;'>
+    <block wx:for="{{areaInitial}}">
+      <view id="{{item}}">{{item}}</view>
+    </block>
+  </view>
+
+  <!-- 弹出地区首字母 -->
+  <view wx:if="{{areaInitial_flag}}" style='position: fixed;bottom: 400rpx;left: 325rpx;width:100rpx;height:100rpx;border-radius: 50%;color:#fff;background:#ececec;' class='center-style'>
+    {{areaInitialIndex}}
+  </view>
+
+</block>

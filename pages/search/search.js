@@ -8,6 +8,11 @@ Page({
    */
   data: {
     cityNavigation: 1,
+    areaInitial: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    areaInitialIndex: 'A', //地区索引
+    areaInitial_flag: false, //屏幕首字母显示控制器
+    showArea: "", //显示的字母
+    inputFocus: false, //输入框焦点  true:聚焦  false:失焦
   },
 
   /**
@@ -16,12 +21,31 @@ Page({
   onLoad: function(options) {
     vm = this
     var screenHeight = getApp().globalData.screenHeight
+    var windowHeight = getApp().globalData.windowHeight //可用窗口高度
     var place = screenHeight + 100 //导航栏高度
     var allHeight = place + 105 //顶部全部高度
+
+    var scrollHeight = windowHeight - allHeight - 200 //滚动条高度
     vm.setData({
       pageTopHeight: screenHeight,
       place: place,
-      allHeight: allHeight
+      allHeight: allHeight,
+      windowHeight: windowHeight,
+      scrollHeight: scrollHeight
+    })
+  },
+
+  //输入框聚焦
+  focus: function(e) {
+    vm.setData({
+      inputFocus: true
+    })
+  },
+
+  //输入框失去焦点时
+  loseFocus: function(e) {
+    vm.setData({
+      inputFocus: false
     })
   },
 
@@ -39,6 +63,27 @@ Page({
     })
   },
 
+  areaSelectStart: function(e) {
+    console.log("触摸事件开始" + JSON.stringify(e))
+    var areaInitialIndex = e.target.id
+    var clientY = e.touches.clientY
+    vm.setData({
+      areaInitial_flag: true,
+      areaInitialIndex: areaInitialIndex
+    })
+  },
+
+  areaSelectEnd: function(e) {
+    console.log("触摸事件结束" + JSON.stringify(e))
+    vm.setData({
+      areaInitial_flag: false
+    })
+  },
+
+  //跳转到国家页
+  jumpCountryPage: function() {
+    util.jumpPage(1, "/pages/country/country")
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

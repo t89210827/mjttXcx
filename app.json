@@ -1,7 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/country/country",
+    "pages/city/city",
+    "pages/cityMap/cityMap",
+    "pages/pay/pay",
+    "pages/payFail/payFail",
+    "pages/myPage/index/index",
+    "pages/myPage/order/order",
+    "pages/myPage/contactUs/contactUs",
+    "pages/myPage/Setting/Setting",
+    "pages/selectCity/selectCity",
+    "pages/scenicMap/scenicMap"
   ],
   "window": {
     "backgroundTextStyle": "light",

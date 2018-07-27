@@ -1,0 +1,54 @@
+<!--pages/myPage/contactUs/contactUs.wxml-->
+<cover-view class='page-top-position'>
+  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view class="page-top center-style" style='position: relative'>
+    <cover-view class='page-top-title'>联系我们</cover-view>
+    <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
+      <cover-image src='../../../images/back.png' style='width:50rpx;height:40rpx;position: absolute;top: 30rpx;left: 45rpx;'></cover-image>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
+<view style='height:{{allHeight}}rpx'></view>
+
+
+<view class='flex-row' style='margin:40rpx 60rpx;'>
+  <image src='../../../images/logo.png' style='width:160rpx;height:160rpx;'></image>
+
+  <view style='margin:26rpx 60rpx;'>
+    <view style='font-size: 40rpx;color: #333333;letter-spacing: -0.48px;'>美景听听</view>
+    <view style='font-size: 34rpx;color: #333333;letter-spacing: -0.41px;'>全球景点语音导游</view>
+  </view>
+
+</view>
+
+<view style='margin-left:40rpx;'>
+
+  <view class='flex-row' style='margin-top:60rpx;align-items:center;'>
+    <view style='font-size: 28rpx;color: #175EE3;letter-spacing: -0.41px;text-decoration:underline;line-height:50rpx;'>点击此处直接联系美景听听官方客服</view>
+    <image src='../../../images/arrow.png' style='width:16rpx;height:16rpx;margin-left:15rpx;'></image>
+  </view>
+
+  <view class='flex-row' style='display:flex;align-items:center;margin-top:25rpx;'>
+    <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;'></image>
+    <view style='font-size: 32rpx;color: #666666;letter-spacing: 0.06px;margin-left:10rpx;'>3011740452</view>
+  </view>
+
+  <view class='flex-row' style='display:flex;align-items:center;margin-top:8rpx;'>
+    <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;'></image>
+    <view style='font-size: 32rpx;color: #666666;letter-spacing: 0.06px;margin-left:10rpx;'>18510723823</view>
+  </view>
+
+  <view style='display:flex;align-items:center;margin-top:30rpx;'>
+    <view style='font-size: 34rpx;color: #333;letter-spacing: -0.41px;'>商务合作：</view>
+  </view>
+
+  <view class='flex-row' style='display:flex;align-items:center;margin-top:8rpx;'>
+    <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;'></image>
+    <view style='font-size: 28rpx;color: #666666;letter-spacing: 0.05px;margin-left:5rpx;'>&</view>
+    <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;margin-left:5rpx;'></image>
+    <view style='font-size: 32rpx;color: #666666;letter-spacing: 0.06px;margin-left:10rpx;margin-left:5rpx;'>18510723823</view>
+  </view>
+
+
+</view>

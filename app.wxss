@@ -20,11 +20,11 @@ page {
 
 .page-top-title {
   font-family: PingFangSC-Semibold;
-  font-size: 22px;
+  font-size: 44rpx;
   color: #fff;
   letter-spacing: 0.35px;
   text-align: center;
-  line-height: 100px;
+  line-height: 200rpx;
 }
 
 .search-background {
@@ -107,4 +107,12 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.switck-scale {
+  transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  -moz-transform: scale(0.8);
 }

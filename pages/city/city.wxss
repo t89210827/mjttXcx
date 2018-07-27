@@ -1,0 +1,40 @@
+/* pages/city/city.wxss */
+
+.buy-border {
+  height: 100rpx;
+  background-color: #fff;
+  border-radius: 50rpx;
+  margin: 20rpx 25rpx;
+}
+
+.buy-font {
+  width: 500rpx;
+  height: 100rpx;
+  margin-left: 80rpx;
+  font-size: 28rpx;
+}
+
+.buy-font-button {
+  font-family: PingFang-SC-Medium;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0.22px;
+}
+
+.scenicNum {
+  font-family: PingFang-SC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0.5px;
+  line-height: 24rpx;
+}
+
+.scenic-font {
+  font-family: PingFang-SC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-align: right;
+  line-height: 28rpx;
+  margin-left: 10rpx;
+}

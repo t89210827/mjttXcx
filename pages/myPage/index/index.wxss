@@ -1,0 +1,9 @@
+/* pages/myPage/index/index.wxss */
+
+.popup__content {
+  width: 642rpx;
+  height: 486rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  text-align: center;
+}

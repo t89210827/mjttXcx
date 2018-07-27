@@ -1,0 +1,76 @@
+/* pages/scenicMap/scenicMap.wxss */
+
+.buy-border {
+  height: 100rpx;
+  width: 700rpx;
+  background-color: #fff;
+  border-radius: 50rpx;
+  margin: 20rpx 25rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+
+.buy-font {
+  width: 500rpx;
+  height: 100rpx;
+  margin-left: 80rpx;
+  font-size: 28rpx;
+}
+
+.buy-font-button {
+  font-family: PingFang-SC-Medium;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0.22px;
+}
+
+.scenic-border {
+  background: #fff;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 10px;
+  width: 710rpx;
+  height: 144rpx;
+  position: absolute;
+  bottom: 100rpx;
+  left: 20rpx;
+}
+
+.scenic-play {
+  position: absolute;
+  top: 43rpx;
+  left: 70rpx;
+}
+
+.myPosition {
+  position: absolute;
+  bottom: 300rpx;
+  left: 20rpx;
+  width: 120rpx;
+  height: 240rpx;
+  background: #fff;
+  border-radius: 6rpx;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.20);
+  border: 1rpx #8f8d8d solid;
+}
+
+.line {
+  position: absolute;
+  top: 120rpx;
+  left: 5rpx;
+  width: 110rpx;
+  height: 2rpx;
+  background: #ececec;
+}
+
+.sonScenic-border {
+  width: 710rpx;
+  height: 479rpx;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(210, 210, 210, 0.50);
+  border-radius: 6px;
+  
+  position: absolute;
+  bottom: 290rpx;
+  left: 20rpx;
+}

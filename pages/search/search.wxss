@@ -1,5 +1,11 @@
 /* pages/search/search.wxss */
 
+/* ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+} */
+
 .search-history {
   font-family: PingFang-SC-Regular;
   font-size: 28rpx;
@@ -30,4 +36,18 @@
   letter-spacing: 1px;
   text-align: center;
   line-height: 60rpx;
+}
+
+.areaInitial {
+  font-size: 20rpx;
+  color: #666;
+  letter-spacing: -1rpx;
+  font-family: PingFangSC-Semibold;
+  text-align: center;
+  position: fixed;
+  right: 0rpx;
+  bottom: 20rpx;
+  width: 80rpx;
+  line-height: 29rpx;
+  /* line-height: 30rpx; */
 }

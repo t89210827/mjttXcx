@@ -1,0 +1,57 @@
+<!--pages/myPage/order/order.wxml-->
+<cover-view class='page-top-position'>
+  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view class="page-top center-style" style='position: relative'>
+    <cover-view class='page-top-title'>我的已购</cover-view>
+    <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
+      <cover-image src='../../../images/back.png' style='width:50rpx;height:40rpx;position: absolute;top: 30rpx;left: 45rpx;'></cover-image>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
+<view style='height:{{allHeight}}rpx'></view>
+
+<view style='margin:20rpx 25rpx;'>
+  <view class='flex-row' style='line-height:70rpx;'>
+    <view style='width:50%;font-family: PingFang-SC-Medium;font-size: 36rpx;color: #333333;letter-spacing: -0.43px;'>巴黎</view>
+    <view style='text-align:right;width:50%;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #E31C17;letter-spacing: -0.43px;'>342天后到期</view>
+  </view>
+  <view class='flex-row' style='line-height:50rpx;'>
+    <view style='width:50%;font-family: PingFang-SC-Medium;font-size: 24rpx;color: #666;letter-spacing: -0.34px;'>日期：2018-03-05 14:28:32</view>
+    <view style='text-align:right;width:50%;font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666;letter-spacing: -0.34px;'>消费：78元</view>
+  </view>
+  <view class='flex-row' style='line-height:50rpx;'>
+    <view style='font-family: PingFang-SC-Medium;font-size: 26rpx;color: #666;letter-spacing: -0.31px;'>订单编号：273764891920391748164376</view>
+  </view>
+  <view style='width:100%;height:1rpx;background:#ebebeb;margin-top:10rpx;'></view>
+
+
+
+  <view class='flex-row' style='line-height:70rpx;'>
+    <view style='width:50%;font-family: PingFang-SC-Medium;font-size: 36rpx;color: #333333;letter-spacing: -0.43px;'>全球解锁高级会员</view>
+    <view style='text-align:right;width:50%;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #E31C17;letter-spacing: -0.43px;'>19天后到期</view>
+  </view>
+  <view class='flex-row' style='line-height:50rpx;'>
+    <view style='width:50%;font-family: PingFang-SC-Medium;font-size: 24rpx;color: #666;letter-spacing: -0.34px;'>日期：2018-03-05 14:28:32</view>
+    <view style='text-align:right;width:50%;font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666;letter-spacing: -0.34px;'>消费：78元</view>
+  </view>
+  <view class='flex-row' style='line-height:50rpx;'>
+    <view style='font-family: PingFang-SC-Medium;font-size: 26rpx;color: #666;letter-spacing: -0.31px;'>订单编号：273764891920391748164376</view>
+  </view>
+  <view style='width:100%;height:1rpx;background:#ebebeb;margin-top:10rpx;'></view>
+
+
+  <view class='flex-row' style='line-height:70rpx;'>
+    <view style='width:50%;font-family: PingFang-SC-Medium;font-size: 36rpx;color: #333333;letter-spacing: -0.43px;'>邀请码兑换</view>
+    <view style='text-align:right;width:50%;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #E31C17;letter-spacing: -0.43px;'>30天后到期</view>
+  </view>
+  <view class='flex-row' style='line-height:50rpx;'>
+    <view style='width:50%;font-family: PingFang-SC-Medium;font-size: 24rpx;color: #666;letter-spacing: -0.34px;'>日期：2018-03-05 14:28:32</view>
+    <view style='text-align:right;width:50%;font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666;letter-spacing: -0.34px;'>消费：78元</view>
+  </view>
+  <view class='flex-row' style='line-height:50rpx;'>
+    <view style='font-family: PingFang-SC-Medium;font-size: 26rpx;color: #666;letter-spacing: -0.31px;'>邀请码：wxgzh0988800009</view>
+  </view>
+  <view style='width:100%;height:1rpx;background:#ebebeb;margin-top:10rpx;'></view>
+
+</view>

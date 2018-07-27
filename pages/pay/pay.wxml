@@ -1,0 +1,60 @@
+<!--pages/pay/pay.wxml-->
+<cover-view class='page-top-position'>
+  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view class="page-top center-style" style='position: relative'>
+    <cover-view class='page-top-title'>选择解锁类型</cover-view>
+    <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
+      <cover-image src='../../images/back.png' style='width:50rpx;height:40rpx;position: absolute;top: 30rpx;left: 45rpx;'></cover-image>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
+<view style='height:{{allHeight}}rpx'></view>
+
+<view class='deblocking-border' bindtap='deblockingSwitch' id='1'>
+  <view style='margin-left:10rpx;margin-top:20rpx;' class='flex-row'>
+    <image src="{{deblockingSwitch == 1 ? '../../images/pay_r.png' : '../../images/pay_n.png'}}" style='width:40rpx;height:40rpx;margin-top:20rpx;'></image>
+    <view class='deblocking-title' style='margin-left:20rpx;line-height:80rpx;'>城市解锁</view>
+    <text style='margin-left:340rpx;text-align:right;ont-family: PingFang-SC-Medium;font-size: 36rpx;color: #E31C17;letter-spacing: -0.43px;line-height:80rpx;'>29</text>
+    <text style='align:right;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #151515;letter-spacing: -0.43px;line-height:80rpx;'>元</text>
+  </view>
+
+  <view style='margin-top:10rpx;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #666666;letter-spacing: -0.43px;text-align: justify;'>
+    <text>解锁</text>
+    <text style='color:#e31c17'>东京6个月</text>
+    <text>，有效期内该城市所有景点音频均可任意收听</text>
+  </view>
+</view>
+
+<view class='deblocking-border' style='position:relative;' bindtap='deblockingSwitch' id='2'>
+  <view style='margin-left:10rpx;margin-top:20rpx;' class='flex-row'>
+    <image src="{{deblockingSwitch == 2 ? '../../images/pay_r.png' : '../../images/pay_n.png'}}" style='width:40rpx;height:40rpx;margin-top:20rpx;'></image>
+    <view class='deblocking-title' style='margin-left:20rpx;line-height:80rpx;'>全球解锁</view>
+    <text style='margin-left:340rpx;text-align:right;ont-family: PingFang-SC-Medium;font-size: 36rpx;color: #E31C17;letter-spacing: -0.43px;line-height:80rpx;'>78</text>
+    <text style='align:right;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #151515;letter-spacing: -0.43px;line-height:80rpx;'>元</text>
+  </view>
+
+  <view style='margin-top:10rpx;font-family: PingFang-SC-Regular;font-size: 36rpx;color: #666666;letter-spacing: -0.43px;text-align: justify;'>
+    <text>解锁</text>
+    <text style='color:#e31c17'>全球12个月</text>
+    <text>，有效期内全球所有景点音频均可任意收听</text>
+  </view>
+</view>
+
+<view style='ont-family: PingFang-SC-Regular;font-size: 28rpx;color: #AAAAAA;letter-spacing: -0.34px;margin:0rpx 20rpx;'>
+  <text>提示：成功解锁后，如手机 美景听听App使用，使用</text>
+  <text style='color:#e31c17;'>微信</text>
+  <text>进行登录，已解锁的景点将会在App内同步，可任意收听。</text>
+</view>
+
+
+<view class='pay-bottom-border flex-row'>
+  <view style='width:472rpx;line-height:110rpx;'>
+    <text style='margin-left:50rpx;color:#666;'>订单金额:</text>
+    <text style='margin-left:20rpx;color: #e31c17;'>￥{{deblockingSwitch == 1 ? '29' : '78'}}</text>
+  </view>
+
+  <view style='width:278rpx;line-height:110rpx;background:#E31C17;' class='center-style' bindtap='pay'>
+    <text style='font-family: PingFang-SC-Medium;font-size: 40rpx;color:#fff;letter-spacing: -0.48px;'>微信支付</text>
+  </view>
+</view>
