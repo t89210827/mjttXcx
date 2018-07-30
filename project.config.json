@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -103,12 +103,6 @@
 				{
 					"id": -1,
 					"name": "景区地图",
-					"pathName": "pages/scenicMap/scenicMap",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "景点地图",
 					"pathName": "pages/scenicMap/scenicMap",
 					"query": ""
 				}

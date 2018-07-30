@@ -38,8 +38,8 @@
 
 .scenic-play {
   position: absolute;
-  top: 43rpx;
-  left: 70rpx;
+  top: 50rpx;
+  left: 65rpx;
 }
 
 .myPosition {

@@ -1,6 +1,6 @@
 <!--pages/myPage/order/order.wxml-->
 <cover-view class='page-top-position'>
-  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
     <cover-view class='page-top-title'>我的已购</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
@@ -9,7 +9,7 @@
   </cover-view>
 </cover-view>
 
-<view style='height:{{allHeight}}rpx'></view>
+<view style='height:{{allHeight}}px'></view>
 
 <view style='margin:20rpx 25rpx;'>
   <view class='flex-row' style='line-height:70rpx;'>

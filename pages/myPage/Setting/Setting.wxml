@@ -1,6 +1,6 @@
 <!--pages/myPage/InvitationCode/InvitationCode.wxml-->
 <cover-view class='page-top-position'>
-  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
     <cover-view class='page-top-title'>设置</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
@@ -9,7 +9,7 @@
   </cover-view>
 </cover-view>
 
-<view style='height:{{allHeight}}rpx'></view>
+<view style='height:{{allHeight}}px'></view>
 
 <view style='font-size: 36rpx;color: #333333;letter-spacing: -0.43px;margin-top:30rpx;line-height:80rpx;background:#fff;'>
   <view style='margin-left:20rpx;'>

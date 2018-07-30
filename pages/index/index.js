@@ -8,22 +8,23 @@ Page({
   data: {
     pageTopHeight: "",
     Ads: [{
-        img: "http://twst.isart.me/o_1cfsgrrjinhlgm61gdfjsm1bqb9.png"
+        img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.OVXurZuWLLJ32f01adc53f71ad752b38e3a17ed1ed77.jpg"
       },
       {
-        img: "http://twst.isart.me/o_1cfsgrrjinhlgm61gdfjsm1bqb9.png"
+        img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.l5cDqfdK5jFU2ac8b861754d88021a064f740cf964ec.jpg"
       },
       {
-        img: "http://twst.isart.me/o_1cfsgrrjinhlgm61gdfjsm1bqb9.png"
+        img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.6jY9r28VjOAZ1d73af85d858d6d9c0561bc0e82c0c44.jpg"
       }
     ]
   },
 
   onLoad: function() {
     vm = this
-    var screenHeight = getApp().globalData.screenHeight
-    var place = screenHeight + 100 //导航栏高度
-    var allHeight = place + 105 //顶部全部高度
+    var screenHeight = getApp().globalData.screenHeight //状态栏高度
+    var place = getApp().globalData.place //导航栏高度
+    var proportion = getApp().globalData.proportion //1px = ?rpx
+    var allHeight = place + (105 * proportion) //顶部全部高度
     vm.setData({
       pageTopHeight: screenHeight,
       place: place,

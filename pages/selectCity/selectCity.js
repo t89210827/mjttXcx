@@ -20,10 +20,10 @@ Page({
   onLoad: function(options) {
     vm = this
     var screenHeight = getApp().globalData.screenHeight
-    var place = screenHeight + 100 //导航栏高度
-    var windowHeight = getApp().globalData.windowHeight - place - 140 //屏幕可用高度
-
-    var areaHeight = place + 120 //地区首字母顶部位置
+    var place = getApp().globalData.place //导航栏高度
+    var windowHeight = getApp().globalData.windowHeight - place - 70 //屏幕可用高度
+    var proportion = getApp().globalData.proportion //1px = ?rpx    
+    var areaHeight = place + (120 * proportion) //地区首字母顶部位置
     vm.setData({
       pageTopHeight: screenHeight,
       allHeight: place,

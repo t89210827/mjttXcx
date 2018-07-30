@@ -16,9 +16,7 @@ Page({
   onLoad: function(options) {
     vm = this
     var screenHeight = getApp().globalData.screenHeight
-    var windowHeight = getApp().globalData.windowHeight
-    console.log("可用窗口高度" + JSON.stringify(windowHeight))
-    var place = screenHeight + 100 //导航栏高度
+    var place = getApp().globalData.place //导航栏高度
     vm.setData({
       pageTopHeight: screenHeight,
       allHeight: place,

@@ -1,6 +1,6 @@
 <!--pages/payFail/payFail.wxml-->
 <cover-view class='page-top-position'>
-  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
     <cover-view class='page-top-title'>美景听听</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
@@ -11,7 +11,7 @@
 
 <!-- <view style='height:{{allHeight}}rpx'></view> -->
 
-<view style='width:750rpx;height:{{windowHeight}}rpx;' class='center-style'>
+<view style='width:750rpx;height:{{windowHeight}}px;' class='center-style'>
   <view style='text-align:center;'>
     <image src='../../images/payFail.png' style='width:200rpx;height:200rpx;float:center;'></image>
     <view style='font-family: PingFang-SC-Regular;font-size: 48rpx;color: #333333;letter-spacing: -0.58px;line-height:80rpx;'>支付失败</view>

@@ -1,6 +1,6 @@
 <!--pages/search/search.wxml-->
 <cover-view class='page-top-position'>
-  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
     <cover-view class='page-top-title'>美景听听</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
@@ -9,7 +9,7 @@
   </cover-view>
 </cover-view>
 
-<view class='search-background' style='position: fixed;top:{{place}}rpx;z-index:1000'>
+<view class='search-background' style='position: fixed;top:{{place}}px;z-index:1000'>
   <view class='search-border'>
     <input class='input-style' placeholder-style="font-size:28rpx;" maxlength="15" placeholder="搜索地区、景区、景点(中英文均可）" bindfocus="focus" bindblur="loseFocus"></input>
     <image src='../../images/search.png' class='search-icon'></image>
@@ -17,7 +17,7 @@
   <view style='height:25rpx;background-color: #e31c17;'></view>
 </view>
 
-<view style='height:{{allHeight}}rpx'></view>
+<view style='height:{{allHeight}}px'></view>
 
 <block wx:if="{{inputFocus}}">
   <view>
@@ -51,14 +51,13 @@
   <view style='width:750rpx;margin-top:30rpx;'>
     <view style='margin:0rpx 25rpx;'>
       <view style='font-family: PingFangSC-Medium;font-size: 18px;color: #333333;letter-spacing: 1px;'>搜索历史</view>
-      <view style='margin-top:20rpx;height:72rpx;overflow:hidden;'>
+      <view style='margin-top:20rpx;height:72rpx;overflow:hidden;' bindscroll="scroll">
         <view class='search-history'>法国</view>
-        <view class='search-history'>法国</view>
-        <view class='search-history'>法国</view>
-        <view class='search-history'>法国</view>
-        <view class='search-history'>法国</view>
-        <view class='search-history'>法国</view>
-        <view class='search-history'>飞回回家</view>
+        <view class='search-history'>意大利</view>
+        <view class='search-history'>日本</view>
+        <view class='search-history'>葡萄牙</view>
+        <view class='search-history'>瑞典</view>
+        <view class='search-history'>韩国</view>
       </view>
     </view>
   </view>
@@ -76,7 +75,7 @@
 
   <!-- 滚动的地区 -->
   <view style='width:100%;overflow:hidden;'>
-    <scroll-view scroll-y style="width:860rpx;height:{{scrollHeight}}rpx;" scroll-with-animation="{{true}}" bindscroll="scroll" scroll-into-view="{{areaInitialIndex}}">
+    <scroll-view scroll-y style="width:860rpx;height:{{scrollHeight}}px;" scroll-with-animation="{{true}}" bindscroll="scroll" scroll-into-view="{{areaInitialIndex}}">
       <block wx:for="{{areaInitial}}">
         <view style='margin-left:25rpx;margin-top:20rpx;width:670rpx;' id="{{item}}">
           <view style='font-family: PingFangSC-Medium;font-size: 36rpx;color: #BCBCBC;letter-spacing: 1px;line-height:50rpx;border-bottom:1rpx #E8E8E8 solid;'>{{item}}</view>
@@ -99,7 +98,7 @@
   </view>
 
   <!-- 弹出地区首字母 -->
-  <view wx:if="{{areaInitial_flag}}" style='position: fixed;bottom: 400rpx;left: 325rpx;width:100rpx;height:100rpx;border-radius: 50%;color:#fff;background:#ececec;' class='center-style'>
+  <view wx:if="{{areaInitial_flag}}" style='position: fixed;bottom: 400rpx;left: 325rpx;width:100rpx;height:100rpx;border-radius: 50%;color:#fff;background:#999;' class='center-style'>
     {{areaInitialIndex}}
   </view>
 

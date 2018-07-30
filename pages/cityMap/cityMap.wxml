@@ -1,6 +1,6 @@
 <!--pages/cityMap/cityMap.wxml-->
 <cover-view class='page-top-position'>
-  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
     <cover-view class='page-top-title'>北京</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
@@ -9,10 +9,10 @@
   </cover-view>
 </cover-view>
 
-<view style='height:{{allHeight}}rpx'></view>
+<view style='height:{{allHeight}}px'></view>
 
 <view style='position:relative;'>
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: {{windowHeight}}rpx;"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: {{windowHeight}}px;"></map>
 
   <!-- 顶部立即购买 -->
   <cover-view class='buy-border flex-row' bindtap='jumpPayPage'>
@@ -22,7 +22,7 @@
 
   <!-- 底部景区 -->
   <cover-view class='scenic-border flex-row' bindtap='jumpSearch'>
-    <cover-image src='http://twst.isart.me/o_1cfsgrrjinhlgm61gdfjsm1bqb9.png' style='width:194rpx;height:144rpx;'></cover-image>
+    <cover-image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.l5cDqfdK5jFU2ac8b861754d88021a064f740cf964ec.jpg?imageView2/1/w/97/h/72/interlac12e/1' style='width:194rpx;height:144rpx;'></cover-image>
     <cover-view style='margin-left:20rpx;'>
       <cover-view style='font-family: PingFangSC-Medium;font-size: 36rpx;color: #333333;letter-spacing: -0.45px;line-height:90rpx;'>地坛公园</cover-view>
       <cover-view style='font-family: Futura-Medium;font-size: 24rpx;color: #666666;letter-spacing: 0.4px;line-height: 28rpx;'>Castle San Angelo</cover-view>

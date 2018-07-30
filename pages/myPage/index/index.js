@@ -3,9 +3,6 @@ var vm = null
 var util = require("../../../utils/util.js")
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
 
   },
@@ -16,14 +13,11 @@ Page({
   onLoad: function(options) {
     vm = this
     var screenHeight = getApp().globalData.screenHeight
-    var place = screenHeight + 100 //导航栏高度
-    var windowHeight = getApp().globalData.windowHeight - place + 80 //屏幕可用高度
+    var place = getApp().globalData.place //导航栏高度
     vm.setData({
       pageTopHeight: screenHeight,
       allHeight: place,
-      windowHeight: windowHeight,
     })
-
   },
 
   //返回

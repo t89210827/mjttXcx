@@ -1,6 +1,6 @@
 <!--pages/myPage/contactUs/contactUs.wxml-->
 <cover-view class='page-top-position'>
-  <cover-view style='height:{{pageTopHeight}}rpx; background-color: #e31c17;'></cover-view>
+  <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
     <cover-view class='page-top-title'>联系我们</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
@@ -9,7 +9,7 @@
   </cover-view>
 </cover-view>
 
-<view style='height:{{allHeight}}rpx'></view>
+<view style='height:{{allHeight}}px'></view>
 
 
 <view class='flex-row' style='margin:40rpx 60rpx;'>

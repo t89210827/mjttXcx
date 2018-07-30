@@ -24,7 +24,7 @@ page {
   color: #fff;
   letter-spacing: 0.35px;
   text-align: center;
-  line-height: 200rpx;
+  line-height: 100rpx;
 }
 
 .search-background {

@@ -20,12 +20,14 @@ Page({
    */
   onLoad: function(options) {
     vm = this
-    var screenHeight = getApp().globalData.screenHeight
-    var windowHeight = getApp().globalData.windowHeight //可用窗口高度
-    var place = screenHeight + 100 //导航栏高度
-    var allHeight = place + 105 //顶部全部高度
+    var screenHeight = getApp().globalData.screenHeight //状态栏高度
+    var place = getApp().globalData.place //导航栏高度
+    var proportion = getApp().globalData.proportion //1px = ?rpx
+    var allHeight = place + (105 * proportion) //顶部全部高度
 
-    var scrollHeight = windowHeight - allHeight - 200 //滚动条高度
+    var windowHeight = getApp().globalData.windowHeight //可用窗口高度
+    var scrollHeight = windowHeight - allHeight - (200 * proportion) //滚动条高度    
+
     vm.setData({
       pageTopHeight: screenHeight,
       place: place,
@@ -33,6 +35,20 @@ Page({
       windowHeight: windowHeight,
       scrollHeight: scrollHeight
     })
+
+    // vm = this
+    // var screenHeight = getApp().globalData.screenHeight
+    // var place = screenHeight + 100 //导航栏高度
+    // var allHeight = place + 105 //顶部全部高度
+
+    // var scrollHeight = windowHeight - allHeight - 200 //滚动条高度
+    // vm.setData({
+    //   pageTopHeight: screenHeight,
+    //   place: place,
+    //   allHeight: allHeight,
+    //   windowHeight: windowHeight,
+    //   scrollHeight: scrollHeight
+    // })
   },
 
   //输入框聚焦
