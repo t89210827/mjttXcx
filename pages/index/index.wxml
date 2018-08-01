@@ -80,9 +80,9 @@
 </view>
 
 <view style='margin-top:50rpx;width:750rpx;' class='center-style' bindtap='jumpSelectCity'>
-  <view style='width:400rpx;height:80rpx;background: #E31C17;box-shadow: 0 2px 4px 0 rgba(210,210,210,0.50);border-radius: 100px;' class='flex-row'>
-    <image src='../../images/destination.png' style='width:40rpx;height:40rpx;margin-left:130rpx;margin-top:20rpx;'></image>
-    <view style='font-family: PingFang-SC-Medium;font-size: 18px;color: #FFFFFF;letter-spacing: -0.94px;line-height:80rpx;margin-left:20rpx;'>北京</view>
+  <view style='width:400rpx;height:80rpx;background: #E31C17;box-shadow: 0 2px 4px 0 rgba(210,210,210,0.50);border-radius: 100px;' class='flex-row center-style'>
+    <image src='../../images/location.png' style='width:30rpx;height:40rpx;'></image>
+    <view style='font-family: PingFang-SC-Medium;font-size: 18px;color: #FFFFFF;letter-spacing: -0.94px;line-height:80rpx;margin-left:15rpx;' class='text-oneline'>{{address}}</view>
   </view>
 </view>
 

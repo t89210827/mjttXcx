@@ -24,7 +24,7 @@ Page({
   },
 
   //返回
-  back: function () {
+  back: function() {
     util.jumpPage(4, 1)
   },
 

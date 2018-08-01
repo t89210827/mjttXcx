@@ -69,8 +69,75 @@
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(210, 210, 210, 0.50);
   border-radius: 6px;
-  
   position: absolute;
   bottom: 290rpx;
   left: 20rpx;
+}
+
+.animation-top {
+  animation: top 1s 1;
+  -webkit-animation: top 1s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes top {
+  from {
+    /* width: 0rpx; */
+    left: -700rpx;
+    opacity: 0;
+  }
+
+  to {
+    left: 0rpx;
+    opacity: 1;
+    /* width: 700rpx; */
+  }
+}
+
+@-webkit-keyframes top {
+  from {
+    /* width: 0rpx; */
+    left: -700rpx;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    left: 0rpx;
+    /* width: 700rpx; */
+  }
+}
+
+.animation {
+  animation: mymove 1s 1;
+  -webkit-animation: mymove 1s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes mymove {
+  from {
+    height: 0rpx;
+    background: #fff;
+    opacity: 1;
+  }
+
+  to {
+    height: 479rpx;
+    background: #fff;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes mymove {
+  from {
+    height: 0rpx;
+    background: #fff;
+    opacity: 1;
+  }
+
+  to {
+    height: 479rpx;
+    background: #fff;
+    opacity: 1;
+  }
 }

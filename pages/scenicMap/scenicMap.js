@@ -1,6 +1,9 @@
 // pages/scenicMap/scenicMap.js
 var vm = null
 var util = require("../../utils/util.js")
+
+var backgroundAudioManager = wx.getBackgroundAudioManager()
+
 Page({
 
   /**
@@ -31,8 +34,33 @@ Page({
         borderRadius: 20,
       },
     }],
-
     son_flag: false, //子景点控制器
+
+    scenicMapList: [{
+      addres: "景仁宫",
+      check: true
+    }, {
+      addres: "故宫",
+      check: false
+    }, {
+      addres: "丽江",
+      check: false
+    }, {
+      addres: "哈哈哈",
+      check: false
+    }, {
+      addres: "中国",
+      check: false
+    }, {
+      addres: "景仁宫",
+      check: false
+    }, {
+      addres: "景仁宫",
+      check: false
+    }, {
+      addres: "景仁宫",
+      check: false
+    }]
   },
 
   regionchange(e) {
@@ -60,13 +88,50 @@ Page({
       windowHeight: windowHeight,
     })
 
+
+  },
+
+
+  //播放
+  play: function() {
+    backgroundAudioManager.title = '此时此刻'
+    backgroundAudioManager.epname = '此时此刻'
+    backgroundAudioManager.singer = '许巍'
+    backgroundAudioManager.coverImgUrl = 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000'
+    backgroundAudioManager.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46' // 设置了 src 之后会自动播放
+    console.log("音频播放")
+    backgroundAudioManager.play()
+  },
+
+  //暂停
+  pause: function() {
+    backgroundAudioManager.pause()
+  },
+
+
+
+  //搜索结果切换
+  slickSonScenic: function(e) {
+    console.log("搜索结果切换" + JSON.stringify(e.currentTarget.id))
+    var index = e.currentTarget.id
+    var scenicMapList = vm.data.scenicMapList
+    scenicMapList[index].check = true
+    for (var i in scenicMapList) {
+      if (i != index) {
+        scenicMapList[i].check = false
+      }
+    }
+    vm.setData({
+      scenicMapList: scenicMapList
+    })
   },
 
   //子景点切换
   sonScenic: function() {
     vm.setData({
-      son_flag: !vm.data.son_flag
+      son_flag: !vm.data.son_flag,
     })
+
   },
 
   //返回
@@ -83,6 +148,27 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+
+    backgroundAudioManager.onPlay(function(res) {
+      vm.setData({
+        runningStatus: "play"
+      })
+      console.log("播放回调")
+    })
+    backgroundAudioManager.onPause(function(res) {
+      vm.setData({
+        runningStatus: "pause"
+      })
+      console.log("播放暂停")
+    })
+
+    backgroundAudioManager.onStop(function(res) {
+      vm.setData({
+        runningStatus: "pause"
+      })
+      console.log("播放停止")
+    })
+
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
@@ -91,8 +177,8 @@ Page({
         var speed = res.speed
         var accuracy = res.accuracy
 
-        console.log("精度" + latitude)
-        console.log("纬度" + longitude)
+        // console.log("精度" + latitude)
+        // console.log("纬度" + longitude)
         vm.setData({
           latitude: latitude,
           longitude: longitude

@@ -33,7 +33,7 @@
 
   <!-- 回到我的位置 -->
   <cover-view class='myPosition center-style' bindtap='moveToLocation'>
-    <cover-image src='../../images/destination.png' style='width:50rpx;height:50rpx;'></cover-image>
+    <cover-image src='../../images/mapPosition.png' style='width:40rpx;height:50rpx;'></cover-image>
   </cover-view>
 
 </view>

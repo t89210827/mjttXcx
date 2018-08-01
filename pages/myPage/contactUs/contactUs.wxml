@@ -24,9 +24,10 @@
 
 <view style='margin-left:40rpx;'>
 
-  <view class='flex-row' style='margin-top:60rpx;align-items:center;'>
+  <view class='flex-row' style='margin-top:60rpx;align-items:center;position:relative;'>
     <view style='font-size: 28rpx;color: #175EE3;letter-spacing: -0.41px;text-decoration:underline;line-height:50rpx;'>点击此处直接联系美景听听官方客服</view>
     <image src='../../../images/arrow.png' style='width:16rpx;height:16rpx;margin-left:15rpx;'></image>
+    <button style='width:440rpx;height:50rpx;position:absolute;top:0rpx;left:0rpx;opacity: 0;' open-type='contact'></button>
   </view>
 
   <view class='flex-row' style='display:flex;align-items:center;margin-top:25rpx;'>
@@ -35,7 +36,7 @@
   </view>
 
   <view class='flex-row' style='display:flex;align-items:center;margin-top:8rpx;'>
-    <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;'></image>
+    <image src='../../../images/tel.png' style='width:30rpx;height:24.6rpx;'></image>
     <view style='font-size: 32rpx;color: #666666;letter-spacing: 0.06px;margin-left:10rpx;'>18510723823</view>
   </view>
 
@@ -46,7 +47,7 @@
   <view class='flex-row' style='display:flex;align-items:center;margin-top:8rpx;'>
     <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;'></image>
     <view style='font-size: 28rpx;color: #666666;letter-spacing: 0.05px;margin-left:5rpx;'>&</view>
-    <image src='../../../images/wx.png' style='width:30rpx;height:24.6rpx;margin-left:5rpx;'></image>
+    <image src='../../../images/tel.png' style='width:30rpx;height:24.6rpx;margin-left:5rpx;'></image>
     <view style='font-size: 32rpx;color: #666666;letter-spacing: 0.06px;margin-left:10rpx;margin-left:5rpx;'>18510723823</view>
   </view>
 
