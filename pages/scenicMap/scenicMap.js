@@ -6,24 +6,21 @@ var backgroundAudioManager = wx.getBackgroundAudioManager()
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     markers: [{
-      // iconPath: "../../images/destination.png",
+      iconPath: "../../images/logo.png",
       id: 0,
       latitude: 41.73482,
       longitude: 123.44972,
-      alpha: 0,
-      // width: 0,
-      // height: 0,
+      alpha: 1,
+      width: 100,
+      height: 100,
       title: "123",
       anchor: {
         x: .5,
         y: 0
       },
-      callout: {
+      label: {
         content: "颐和园",
         color: "#ececec",
         bgColor: "#ff0000",
@@ -32,6 +29,8 @@ Page({
         display: 'ALWAYS',
         textAlign: "center",
         borderRadius: 20,
+        anchorX: 2,
+        anchorY: 3,
       },
     }],
     son_flag: false, //子景点控制器
@@ -63,8 +62,15 @@ Page({
     }]
   },
 
+  // 视野发生变化时触发
   regionchange(e) {
-    console.log(e.type)
+    // console.log("视野发生变化时触发" + JSON.stringify(e))
+    this.mapCtx.getScale({
+      success: function(res) {
+        console.log(res.scale)
+      }
+    })
+
   },
   markertap(e) {
     console.log(e.markerId)

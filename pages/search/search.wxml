@@ -51,7 +51,7 @@
   <view style='width:750rpx;margin-top:30rpx;'>
     <view style='margin:0rpx 25rpx;'>
       <view style='font-family: PingFangSC-Medium;font-size: 18px;color: #333333;letter-spacing: 1px;'>搜索历史</view>
-      <view style='margin-top:20rpx;height:72rpx;overflow:hidden;' bindscroll="scroll">
+      <view style='margin-top:20rpx;height:72rpx;overflow:hidden;' bindtap="jumpCountryPage">
         <view class='search-history'>法国</view>
         <view class='search-history'>意大利</view>
         <view class='search-history'>日本</view>

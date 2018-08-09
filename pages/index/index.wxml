@@ -14,12 +14,12 @@
   <cover-view style='height:25rpx;background-color: #e31c17;'></cover-view>
 </cover-view>
 
-<view style='height:{{allHeight}}px'></view>
+<view style='height:{{allHeight}}px;margin-bottom:-1rpx;'></view>
 
 <swiper indicator-dots="true" indicator-color="#FFFFFF" indicator-active-color="#e31c17" autoplay="true" interval="5000" duration="600" style="height:316rpx" circular="true">
-  <block wx:for="{{Ads}}" wx:key="*this">
+  <block wx:for="{{ads}}" wx:key="*this">
     <swiper-item>
-      <image src="{{item.img}}?imageView2/1/w/750/h/316/interlac12e/1" style='width:750rpx;height:316rpx;' width="750rpx" />
+      <image src="{{item.image}}?imageView2/1/w/750/h/316/interlac12e/1" style='width:750rpx;height:316rpx;' width="750rpx" />
     </swiper-item>
   </block>
 </swiper>

@@ -78,6 +78,7 @@
   animation: top 1s 1;
   -webkit-animation: top 1s 1;
   animation-fill-mode: forwards;
+  
 }
 
 @keyframes top {

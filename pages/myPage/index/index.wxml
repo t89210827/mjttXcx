@@ -148,6 +148,6 @@
 
   <!-- </view> -->
 
-  <image src='../../../images/payFail.png' style='width:80rpx;height:80rpx;position:absolute;bottom:300rpx;left:325rpx;' bindtap='hidePopup'></image>
+  <image src='../../../images/cancel.png' style='width:80rpx;height:80rpx;position:absolute;bottom:300rpx;left:325rpx;' bindtap='hidePopup'></image>
 
 </wxc-popup>

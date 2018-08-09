@@ -59,6 +59,11 @@ Page({
     })
   },
 
+  //跳转到国家页
+  jumpCountryPage: function () {
+    util.jumpPage(1, "/pages/country/country")
+  },
+
   //返回
   back: function() {
     util.jumpPage(4, 1)

@@ -27,7 +27,7 @@
         <view style='font-family: PingFangSC-Medium;font-size: 36rpx;color: #BCBCBC;letter-spacing: 1px;line-height:50rpx;border-bottom:1rpx #E8E8E8 solid;'>{{item}}</view>
         <view style='margin-left:30rpx;overflow:hidden;'>
           <block wx:for="{{6}}">
-            <view style='font-family: PingFang-SC-Regular;font-size: 32rpx;color: #666666;letter-spacing: 0.89px;margin-left:20rpx;float:left;margin-top:20rpx;'>阿尔山</view>
+            <view style='font-family: PingFang-SC-Regular;font-size: 32rpx;color: #666666;letter-spacing: 0.89px;margin-left:20rpx;float:left;margin-top:20rpx;' bindtap='jumpCountryPage'>阿尔山</view>
           </block>
         </view>
       </view>

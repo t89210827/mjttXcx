@@ -11,7 +11,7 @@
 
 <view style='height:{{allHeight}}px'></view>
 
-<view class='deblocking-border' bindtap='deblockingSwitch' id='1'>
+<view class='deblocking-border' style="box-shadow: {{deblockingSwitch == 1 ? '0 2px 4px 0 rgba(220, 178, 178, 0.50)' : '0 0 0 0'}}" bindtap='deblockingSwitch' id='1'>
   <view style='margin-left:10rpx;margin-top:20rpx;' class='flex-row'>
     <image src="{{deblockingSwitch == 1 ? '../../images/pay_r.png' : '../../images/pay_n.png'}}" style='width:40rpx;height:40rpx;margin-top:20rpx;'></image>
     <view class='deblocking-title' style='margin-left:20rpx;line-height:80rpx;'>城市解锁</view>
@@ -26,7 +26,7 @@
   </view>
 </view>
 
-<view class='deblocking-border' style='position:relative;' bindtap='deblockingSwitch' id='2'>
+<view class='deblocking-border' style="box-shadow: {{deblockingSwitch == 2 ? '0 2px 4px 0 rgba(220, 178, 178, 0.50)' : '0 0 0 0'}}" bindtap='deblockingSwitch' id='2'>
   <view style='margin-left:10rpx;margin-top:20rpx;' class='flex-row'>
     <image src="{{deblockingSwitch == 2 ? '../../images/pay_r.png' : '../../images/pay_n.png'}}" style='width:40rpx;height:40rpx;margin-top:20rpx;'></image>
     <view class='deblocking-title' style='margin-left:20rpx;line-height:80rpx;'>全球解锁</view>

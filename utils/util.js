@@ -1,10 +1,10 @@
 //测试标识
-var TESTMODE = false;
+var TESTMODE = true;
 //服务器地址
-var SERVER_URL = "https://dekuaiwen.isart.me";
-var DEBUG_URL = "http://testwaibao.isart.me";
-var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 
+var SERVER_URL = "https://api.gowithtommy.com/";
+var DEBUG_URL = "https://result.eolinker.com/rNWDe9142c1437d9ae7066eb3127a25e871437bf3fab09f?uri=";
+var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 //////接口相关//////////////////////////////////////////
 //进行接口调用的基本方法
 function wxRequest(url, param, method, successCallback, errorCallback) {
@@ -29,14 +29,14 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
     },
     // header: { 'content-type': 'application/x-www-form-urlencoded' },
     method: method,
-    success: function (ret) {
+    success: function(ret) {
       // console.log("ret:" + JSON.stringify(ret))
       successCallback(ret)
     },
-    fail: function (err) {
+    fail: function(err) {
       console.log("wxRequest fail:" + JSON.stringify(err))
     },
-    complete: function () {
+    complete: function() {
       hideLoading()
       wx.stopPullDownRefresh() //停止下拉刷新      
     }
@@ -45,7 +45,15 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
 
 //获取banner图
 function ad_getADs(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + 'ad/getADs', param, "GET", successCallback, errorCallback)
+  wxRequest(SERVER_URL + 'rest/miniapp/banner/', param, "GET", successCallback, errorCallback)
+  // https://api.gowithtommy.com/rest/miniapp/banner/
+}
+// http://result.eolinker.com/
+
+//热门城市
+function hot_city(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/hot_city/', param, "GET", successCallback, errorCallback)
+  // https://api.gowithtommy.com/rest/miniapp/banner/
 }
 
 //根据code获取openid
@@ -157,7 +165,7 @@ function shareXCX_shareXCX(param, successCallback, errorCallback) {
 
 // http://localhost/kwServer/public/api/shareXCX/shareXCX
 
-var swapItems = function (arr, index1, index2) {
+var swapItems = function(arr, index1, index2) {
   arr[index1] = arr.splice(index2, 1, arr[index1])[0];
   return arr;
 };
@@ -335,7 +343,7 @@ function showModal(title, content, confirmCallBack, cancelCallBack) {
   wx.showModal({
     title: title,
     content: content,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
         confirmCallBack(res)
@@ -352,7 +360,7 @@ function showErrorModal(msg) {
   wx.showModal({
     title: '调用失败',
     content: msg,
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         console.log('用户点击确定')
       } else if (res.cancel) {
@@ -436,7 +444,7 @@ function navigateToRegister(param) {
 // mm/m 分钟  
 // ss/SS/s/S 秒  
 //---------------------------------------------------  
-Date.prototype.Format = function (formatStr) {
+Date.prototype.Format = function(formatStr) {
   var str = formatStr
   var Week = ['日', '一', '二', '三', '四', '五', '六']
 
@@ -482,7 +490,7 @@ function daysBetween(DateOne, DateTwo) {
 //+---------------------------------------------------  
 //| 日期计算  
 //+---------------------------------------------------  
-Date.prototype.DateAdd = function (strInterval, Number) {
+Date.prototype.DateAdd = function(strInterval, Number) {
   var dtTmp = this
   switch (strInterval) {
     case 's':
@@ -507,7 +515,7 @@ Date.prototype.DateAdd = function (strInterval, Number) {
 //+---------------------------------------------------  
 //| 比较日期差 dtEnd 格式为日期型或者有效日期格式字符串  
 //+---------------------------------------------------  
-Date.prototype.DateDiff = function (strInterval, dtEnd) {
+Date.prototype.DateDiff = function(strInterval, dtEnd) {
   var dtStart = this
   if (typeof dtEnd == 'string') //如果是字符串转换为日期型  
   {
@@ -534,7 +542,7 @@ Date.prototype.DateDiff = function (strInterval, dtEnd) {
 //+---------------------------------------------------  
 //| 日期输出字符串，重载了系统的toString方法  
 //+---------------------------------------------------  
-Date.prototype.toString = function (showWeek) {
+Date.prototype.toString = function(showWeek) {
   var myDate = this;
   var str = myDate.toLocaleDateString()
   if (showWeek) {
@@ -591,7 +599,7 @@ function CheckDateTime(str) {
 //+---------------------------------------------------  
 //| 把日期分割成数组  
 //+---------------------------------------------------  
-Date.prototype.toArray = function () {
+Date.prototype.toArray = function() {
   var myDate = this
   var myArray = Array()
   myArray[0] = myDate.getFullYear()
@@ -608,7 +616,7 @@ Date.prototype.toArray = function () {
 //| 参数 interval 表示数据类型  
 //| y 年 m月 d日 w星期 ww周 h时 n分 s秒  
 //+---------------------------------------------------  
-Date.prototype.DatePart = function (interval) {
+Date.prototype.DatePart = function(interval) {
   var myDate = this
   var partStr = ''
   var Week = ['日', '一', '二', '三', '四', '五', '六']
@@ -644,7 +652,7 @@ Date.prototype.DatePart = function (interval) {
 //+---------------------------------------------------  
 //| 取得当前日期所在月的最大天数  
 //+---------------------------------------------------  
-Date.prototype.MaxDayOfDate = function () {
+Date.prototype.MaxDayOfDate = function() {
   var myDate = this
   var ary = myDate.toArray()
   var date1 = (new Date(ary[0], ary[1] + 1, 1))
@@ -777,14 +785,14 @@ function getDiffentTime(str, now) {
   var arr = str.split(/\s+/gi)
   var temp = 0,
     arr1, arr2, oldTime, delta
-  var getIntValue = function (ss, defaultValue) {
+  var getIntValue = function(ss, defaultValue) {
     try {
       return parseInt(ss, 10)
     } catch (e) {
       return defaultValue
     }
   }
-  var getWidthString = function (num) {
+  var getWidthString = function(num) {
     return num < 10 ? ("0" + num) : num
   }
   if (arr.length >= 2) {
@@ -917,25 +925,5 @@ module.exports = {
   contains: contains, //判断对象中有无一个属性
 
   ad_getADs: ad_getADs, //获取banner图
-  user_getXCXOpenId: user_getXCXOpenId, //根据code获取openid
-  user_login: user_login, //登录接口，该接口适用于小程序、服务号的注册
-  ad_getListByCon: ad_getListByCon, //获取轮播图
-  getQiniuToken: getQiniuToken, //获取七牛上传token
-  article_getListByCon: article_getListByCon, //根据条件获取作品列表
-  article_edit: article_edit, //新建或编辑作品接口
-  article_getById: article_getById, //根据id获取图文信息
-  user_updateById: user_updateById, //根据id编辑用户信息
-  user_getByIdWithToken: user_getByIdWithToken, //根据id获取用户信息带token（传入user_id）
-  guanZhu_setGuanZhu: guanZhu_setGuanZhu, //用户关注取消关注
-  article_addTransNum: article_addTransNum, //文章转发接口
-  article_getRandList: article_getRandList, //获取推荐文章列表
-  zan_setZan: zan_setZan, //赞.取消点赞
-  guanZhu_getListByCon: guanZhu_getListByCon, //关注列表
-  article_deleteWz: article_deleteWz, //删除文章接口
-  user_getById: user_getById, //根据id获取用户信息
-  showpic_getListByCon: showpic_getListByCon, //用户分享图片
-  xcx_decryptXCXData: xcx_decryptXCXData, //解密获取用户信息
-  user_getCZ: user_getCZ, //首页制作按钮是否显示
-  share_shareEvent: share_shareEvent, //分享作品
-  shareXCX_shareXCX: shareXCX_shareXCX, //分享小程序二维码
+  hot_city: hot_city, //获取热门城市
 }

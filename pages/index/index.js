@@ -11,16 +11,16 @@ var qqmapsdk;
 Page({
   data: {
     pageTopHeight: "",
-    Ads: [{
-        img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.OVXurZuWLLJ32f01adc53f71ad752b38e3a17ed1ed77.jpg"
-      },
-      {
-        img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.l5cDqfdK5jFU2ac8b861754d88021a064f740cf964ec.jpg"
-      },
-      {
-        img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.6jY9r28VjOAZ1d73af85d858d6d9c0561bc0e82c0c44.jpg"
-      }
-    ],
+    // Ads: [{
+    //     img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.OVXurZuWLLJ32f01adc53f71ad752b38e3a17ed1ed77.jpg"
+    //   },
+    //   {
+    //     img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.l5cDqfdK5jFU2ac8b861754d88021a064f740cf964ec.jpg"
+    //   },
+    //   {
+    //     img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.6jY9r28VjOAZ1d73af85d858d6d9c0561bc0e82c0c44.jpg"
+    //   }
+    // ],
     address: "", //城市
   },
 
@@ -35,16 +35,47 @@ Page({
       place: place,
       allHeight: allHeight
     })
-
     vm.getSetting()
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'PBCBZ-YPUWO-NVKWB-SOH76-UI7D2-5XFBE'
     });
+
+    vm.AllFunction()
+  },
+
+  //所有的方法
+  AllFunction: function() {
+    vm.ad_getADs()
+    vm.hot_city()
+  },
+
+  //获取轮播图
+  ad_getADs: function() {
+    var param = {}
+    util.ad_getADs(param, function(res) {
+      console.log("获取轮播图接口返回：" + JSON.stringify(res))
+      if (res.data.code == 0) {
+        vm.setData({
+          ads: res.data.data
+        })
+      }
+    })
+  },
+
+  //热门城市
+  hot_city: function() {
+    util.ad_getADs({}, function(res) {
+      console.log("热门城市接口返回：" + JSON.stringify(res))
+      if (res.data.code == 0) {
+        // vm.setData({
+        //   ads: res.data.data
+        // })
+      }
+    })
   },
 
   onShow: function() {
-
 
   },
 
