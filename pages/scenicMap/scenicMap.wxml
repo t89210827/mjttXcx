@@ -14,13 +14,13 @@
 <view style='height:{{allHeight}}px;'></view>
 
 <view style='position:relative;'>
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: {{windowHeight}}px;"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: {{windowHeight}}px;"></map>
 
   <!-- 顶部立即购买 -->
-  <view class='buy-border flex-row animation-top' bindtap='jumpPayPage'>
+  <cover-view class='buy-border flex-row animation-top' bindtap='jumpPayPage'>
     <cover-view class='buy-font' style='font-size: 28rpx;color: #666666;line-height:100rpx; font-family: PingFang-SC-Regular;letter-spacing: 0.22px;'>29元解锁北京所有景点3个月</cover-view>
     <cover-view style='width:200rpx;height:70rpx;border-radius:35rpx;background:#e31c17;float:right;margin:15rpx 20rpx;text-align:center;line-height:70rpx;' class='buy-font-button'>立即购买</cover-view>
-  </view>
+  </cover-view>
 
   <!-- 自动导览 定位 -->
   <cover-view wx:if="{{!son_flag}}" class='myPosition' style='text-align:center;' bindtap='moveToLocation'>
@@ -44,17 +44,20 @@
       <textarea style='line-height:80rpx;font-size: 28rpx;letter-spacing: 0.22px;margin-left:10rpx;' placeholder-style='color: #A4A4A4;line-height:80rpx;' bindblur="bindTextAreaBlur" auto-height placeholder="请输入编号或名称（中文或英文）" />
     </cover-view>
 
-    <block wx:for="{{scenicMapList}}">
-
+    <!-- <block wx:for="{{scenicMapList}}"> -->
+    <!-- <scroll-view scroll-y style="height: 300rpx;"> -->
+    <block wx:for="{{sceneList}}">
       <cover-view class='flex-row' style='width:710rpx;height:70rpx;align-items:center;' bindtap='slickSonScenic' id="{{index}}">
         <cover-view style='width:50rpx;height:24rpx;'>
           <cover-image wx:if="{{item.check}}" src='../../images/arrow.png' style='width:20rpx;height:24rpx;margin-left:30rpx;'></cover-image>
         </cover-view>
-        <cover-view style="font-size: 32rpx;color: {{item.check ? '#E31C17' : '#666666'}};letter-spacing: 0.25px;margin-left:10rpx;line-height:70rpx;">{{ item.addres}}</cover-view>
+        <!-- <cover-view style="font-size: 32rpx;color: {{item.check ? '#E31C17' : '#666666'}};letter-spacing: 0.25px;margin-left:10rpx;line-height:70rpx;">{{item.addres}}</cover-view> -->
+        <cover-view style="font-size: 32rpx;color: {{item.check ? '#E31C17' : '#666666'}};letter-spacing: 0.25px;margin-left:10rpx;line-height:70rpx;">{{item.name}}</cover-view>
         <cover-view style='font-size: 28rpx;color: #AAAAAA;letter-spacing: 0.22px;margin-left:15rpx;line-height:70rpx;'>试听</cover-view>
       </cover-view>
       <cover-view style='width:750rpx;height:1rpx;background:#e8e8e8;'></cover-view>
     </block>
+    <!-- </scroll-view> -->
     <view style='height:30rpx;'></view>
 
   </cover-view>
@@ -66,11 +69,9 @@
       <cover-view class='text-oneline' style='font-family: PingFangSC-Medium;font-size: 36rpx;color: #333333;letter-spacing: -0.45px;line-height:90rpx;'>景仁宫</cover-view>
       <cover-view class='text-oneline' style='font-family: Futura-Medium;font-size: 24rpx;color: #666666;letter-spacing: 0.4px;line-height: 28rpx;'>Castle San Angelo</cover-view>
     </cover-view>
-
     <cover-view style='margin-left:20rpx;width:120rpx;align-items:center;display:flex;' bindtap='sonScenic'>
       <cover-image src="{{son_flag ? '../../images/menu_down.png' : '../../images/menu_up.png'}}" style='width:60rpx;height:60rpx;'></cover-image>
     </cover-view>
-
     <cover-image bindtap="{{runningStatus === 'play' ? 'pause' : 'play'}}" class="scenic-play" src="{{runningStatus === 'play' ? '../../images/pause.png' : '../../images/play.png'}}" style='width:50rpx;height:46.4rpx;'></cover-image>
   </cover-view>
 

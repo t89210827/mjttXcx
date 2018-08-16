@@ -1,5 +1,5 @@
 //测试标识
-var TESTMODE = true;
+var TESTMODE = false;
 //服务器地址
 
 var SERVER_URL = "https://api.gowithtommy.com/";
@@ -46,119 +46,41 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
 //获取banner图
 function ad_getADs(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + 'rest/miniapp/banner/', param, "GET", successCallback, errorCallback)
-  // https://api.gowithtommy.com/rest/miniapp/banner/
 }
-// http://result.eolinker.com/
 
 //热门城市
 function hot_city(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + 'rest/miniapp/hot_city/', param, "GET", successCallback, errorCallback)
-  // https://api.gowithtommy.com/rest/miniapp/banner/
 }
 
-//根据code获取openid
-function user_getXCXOpenId(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/getXCXOpenId', param, "GET", successCallback, errorCallback)
+//用户所在 城市与附近景点列表
+function miniapp_nearby_city_scene_list(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/nearby_city_scene_list/', param, "GET", successCallback, errorCallback)
 }
 
-//登录接口，该接口适用于小程序、服务号的注册
-function user_login(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/login', param, "POST", successCallback, errorCallback)
+//搜索页面国内,国际城市,国家表格
+function search_table(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/search/table/', param, "GET", successCallback, errorCallback)
 }
 
-//获取轮播图
-function ad_getListByCon(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/ad/getListByCon', param, "GET", successCallback, errorCallback)
+//全局搜索
+function search_global(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/search/global/', param, "GET", successCallback, errorCallback)
 }
 
-//获取七牛云接口
-function getQiniuToken(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/getQiniuToken', param, "GET", successCallback, errorCallback)
+//城市列表
+function city_list(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/city/list/', param, "GET", successCallback, errorCallback)
 }
 
-//根据条件获取作品列表
-function article_getListByCon(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/article/getListByCon', param, "GET", successCallback, errorCallback)
+//景点列表
+function scene_list(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/scene/list/', param, "GET", successCallback, errorCallback)
 }
 
-//新建或编辑作品接口
-function article_edit(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/article/edit', param, "POST", successCallback, errorCallback)
-}
-
-//根据id获取图文信息
-function article_getById(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/article/getById', param, "GET", successCallback, errorCallback)
-}
-
-//根据id编辑用户信息
-function user_updateById(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/updateById', param, "POST", successCallback, errorCallback)
-}
-
-//根据id获取用户信息带token（传入user_id）
-function user_getByIdWithToken(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/getByIdWithToken', param, "GET", successCallback, errorCallback)
-}
-
-//用户关注取消关注
-function guanZhu_setGuanZhu(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/guanZhu/setGuanZhu', param, "POST", successCallback, errorCallback)
-}
-
-//文章转发接口
-function article_addTransNum(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/article/addTransNum', param, "GET", successCallback, errorCallback)
-}
-
-//获取推荐文章列表
-function article_getRandList(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/article/getRandList', param, "GET", successCallback, errorCallback)
-}
-
-//赞.取消点赞
-function zan_setZan(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/zan/setZan', param, "POST", successCallback, errorCallback)
-}
-
-//关注列表
-function guanZhu_getListByCon(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/guanZhu/getListByCon', param, "GET", successCallback, errorCallback)
-}
-
-//删除文章接口
-function article_deleteWz(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/article/deleteWz', param, "POST", successCallback, errorCallback)
-}
-
-//根据id获取用户信息
-function user_getById(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/getById', param, "GET", successCallback, errorCallback)
-}
-
-//用户分享图片
-function showpic_getListByCon(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/showpic/getListByCon', param, "GET", successCallback, errorCallback)
-}
-
-//解密获取用户信息
-function xcx_decryptXCXData(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/xcx/decryptXCXData', param, "POST", successCallback, errorCallback)
-}
-
-//首页制作按钮是否显示
-function user_getCZ(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/user/getCZ', param, "GET", successCallback, errorCallback)
-}
-
-//分享作品
-function share_shareEvent(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/share/shareEvent', param, "GET", successCallback, errorCallback)
-}
-
-//分享小程序二维码
-function shareXCX_shareXCX(param, successCallback, errorCallback) {
-  wxRequest(SERVER_URL + '/api/shareXCX/shareXCX', param, "GET", successCallback, errorCallback)
+//解锁价格信息列表
+function payment_price_info(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/payment/price_info', param, "GET", successCallback, errorCallback)
 }
 
 
@@ -926,4 +848,10 @@ module.exports = {
 
   ad_getADs: ad_getADs, //获取banner图
   hot_city: hot_city, //获取热门城市
+  miniapp_nearby_city_scene_list: miniapp_nearby_city_scene_list, //用户所在 城市与附近景点列表
+  search_table: search_table, //搜索页面国内,国际城市,国家表格
+  search_global: search_global, //全局搜索
+  city_list: city_list, //城市列表
+  scene_list: scene_list, //景点列表
+  payment_price_info: payment_price_info, //解锁价格信息列表
 }

@@ -12,11 +12,11 @@
 <view style='height:{{allHeight}}px'></view>
 
 <view style='position:relative;'>
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: {{windowHeight}}px;"></map>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: {{windowHeight}}px;"></map>
 
   <!-- 顶部立即购买 -->
   <cover-view class='buy-border flex-row' bindtap='jumpPayPage'>
-    <cover-view class='buy-font' style='font-size: 28rpx;color: #666666;line-height:100rpx; font-family: PingFang-SC-Regular;letter-spacing: 0.22px;'>29元解锁北京所有景点3个月</cover-view>
+    <cover-view class='buy-font' style='font-size: 28rpx;color: #666666;line-height:100rpx; font-family: PingFang-SC-Regular;letter-spacing: 0.22px;'>29元解锁{{city_list[city_id].name}}所有景点3个月</cover-view>
     <cover-view style='width:200rpx;height:70rpx;border-radius:35rpx;background:#e31c17;float:right;margin:15rpx 20rpx;text-align:center;line-height:70rpx;' class='buy-font-button'>立即购买</cover-view>
   </cover-view>
 

@@ -26,16 +26,19 @@
 
 <view style='margin:10rpx 25rpx;overflow:hidden;'>
 
-  <!-- <block wx:for="{{8}}"> -->
-  <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
-    <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.DXIsooURPd15a7ba3e1d022297fb17124913f861c7d6.jpg?imageView2/1/w/320/h/240/interlac12e/1' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
-    <view style='font-size: 28rpx;text-align:center;'>故宫</view>
-    <image src='../../images/explain.png' style='position: absolute;top: 20rpx;left: 0rpx;width:136rpx;height:48rpx;'></image>
-    <view style='position: absolute;top: 32rpx;left: 15rpx;font-size:24rpx;color:#fff;'>15处介绍</view>
-    <image src='../../images/play.png' style='position: absolute;top: 100rpx;left: 140rpx;width:60rpx;height:60rpx;'></image>
-  </view>
+  <block wx:for="{{sceneList}}">
+    <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
+      <!-- <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.DXIsooURPd15a7ba3e1d022297fb17124913f861c7d6.jpg?imageView2/1/w/320/h/240/interlac12e/1' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image> -->
+      <image src='{{item.image}}' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
+      <view style='font-size: 28rpx;text-align:center;' class='text-oneline'>{{item.name}}</view>
+      <image src='../../images/explain.png' style='position: absolute;top: 20rpx;left: 0rpx;width:136rpx;height:48rpx;'></image>
+      <view style='position: absolute;top: 32rpx;left: 15rpx;font-size:24rpx;color:#fff;'>15处介绍</view>
+      <image src='../../images/play.png' style='position: absolute;top: 100rpx;left: 140rpx;width:60rpx;height:60rpx;'></image>
+    </view>
+  </block>
 
-  <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
+
+  <!-- <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
     <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.VAPjtwihh8eh0548f7e12a61c24886f5de4f7321f62a.jpg?imageView2/1/w/320/h/240/interlac12e/1' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
     <view style='font-size: 28rpx;text-align:center;'>故宫</view>
     <image src='../../images/explain.png' style='position: absolute;top: 20rpx;left: 0rpx;width:136rpx;height:48rpx;'></image>
@@ -89,8 +92,7 @@
     <image src='../../images/explain.png' style='position: absolute;top: 20rpx;left: 0rpx;width:136rpx;height:48rpx;'></image>
     <view style='position: absolute;top: 32rpx;left: 15rpx;font-size:24rpx;color:#fff;'>15处介绍</view>
     <image src='../../images/play.png' style='position: absolute;top: 100rpx;left: 140rpx;width:60rpx;height:60rpx;'></image>
-  </view>
+  </view> -->
 
-  <!-- </block> -->
 
 </view>

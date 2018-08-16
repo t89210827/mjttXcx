@@ -21,7 +21,9 @@ Page({
     //     img: "http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.6jY9r28VjOAZ1d73af85d858d6d9c0561bc0e82c0c44.jpg"
     //   }
     // ],
-    address: "", //城市
+    address: "", //所在城市
+    sceneList: [], //景点列表
+    hot_city: [], //热门城市
   },
 
   onLoad: function() {
@@ -46,15 +48,16 @@ Page({
 
   //所有的方法
   AllFunction: function() {
-    vm.ad_getADs()
-    vm.hot_city()
+    vm.ad_getADs() //获取轮播图
+    vm.hot_city() //热门城市
+    // vm.miniapp_nearby_city_scene_list() //用户所在 城市与附近景点列表
   },
 
   //获取轮播图
   ad_getADs: function() {
     var param = {}
     util.ad_getADs(param, function(res) {
-      console.log("获取轮播图接口返回：" + JSON.stringify(res))
+      // console.log("获取轮播图接口返回：" + JSON.stringify(res))
       if (res.data.code == 0) {
         vm.setData({
           ads: res.data.data
@@ -65,17 +68,38 @@ Page({
 
   //热门城市
   hot_city: function() {
-    util.ad_getADs({}, function(res) {
+    util.hot_city({}, function(res) {
       console.log("热门城市接口返回：" + JSON.stringify(res))
       if (res.data.code == 0) {
-        // vm.setData({
-        //   ads: res.data.data
-        // })
+        var hot_city = res.data.data
+        vm.setData({
+          hot_city: hot_city
+        })
       }
     })
   },
 
   onShow: function() {
+
+  },
+
+  //用户所在 城市与附近景点列表
+  miniapp_nearby_city_scene_list: function() {
+    var param = {
+      longitute: vm.data.longitude,
+      latitute: vm.data.latitude
+    }
+    util.miniapp_nearby_city_scene_list(param, function(res) {
+      if (res.data.code == 0) {
+        var address = res.data.data.city.name
+        var sceneList = res.data.data.scene_list
+        vm.setData({
+          address: address,
+          sceneList: sceneList,
+        })
+        // console.log("用户所在城市与附近景点列表返回：" + JSON.stringify(res))
+      }
+    })
 
   },
 
@@ -87,8 +111,13 @@ Page({
       success: function(res) {
         var latitude = res.latitude
         var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
+        var speed = res.speed //	速度
+        var accuracy = res.accuracy //	位置的精确度
+        vm.setData({
+          longitude: longitude,
+          latitude: latitude
+        })
+        vm.miniapp_nearby_city_scene_list() //用户所在 城市与附近景点列表
         // console.log("获取经纬度成功" + latitude)
         // 腾讯地图逆解析
         qqmapsdk.reverseGeocoder({
@@ -97,27 +126,18 @@ Page({
             longitude: longitude
           },
           success: function(res) {
-            console.log(JSON.stringify(res));
+            // console.log(JSON.stringify(res));
             var city = res.result.address_component.city
-            vm.setData({
-              address: city
-            })
           },
           fail: function(res) {
             console.log(res);
           },
-          // complete: function(res) {
-          //   console.log(res);
-          // }
         });
       },
       fail(err) {
         console.log("获取经纬度失败：" + JSON.stringify(err))
       }
     })
-
-
-
   },
 
   //获取位置
@@ -166,8 +186,9 @@ Page({
   },
 
   // 跳转到城市页面
-  jumpCityPage: function() {
-    util.jumpPage(1, "/pages/city/city")
+  jumpCityPage: function(e) {
+    var city_id = e.target.id
+    util.jumpPage(1, "/pages/city/city?city_id=" + city_id)
   },
 
   // 跳转到城市地图页面

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    city_id: "", //城市id
   },
 
   /**
@@ -15,22 +15,48 @@ Page({
    */
   onLoad: function(options) {
     vm = this
+
+    var city_id = options.city_id
+    vm.setData({
+      city_id: city_id
+    })
+
     var screenHeight = getApp().globalData.screenHeight
     var place = getApp().globalData.place //导航栏高度
     vm.setData({
       pageTopHeight: screenHeight,
       allHeight: place,
     })
+
+    vm.scene_list()
+  },
+
+  //景点列表
+  scene_list: function() {
+    var param = {
+      city_id: vm.data.city_id
+    }
+    util.scene_list(param, function(res) {
+      console.log("景点列表：" + JSON.stringify(res))
+      if (res.data.code == 0) {
+        var sceneList = res.data.data
+        vm.setData({
+          sceneList: sceneList
+        })
+      }
+    })
   },
 
   //跳转到地图详情页
   jumpCityMap: function() {
-    util.jumpPage(1, "/pages/cityMap/cityMap")
+    var city_id = vm.data.city_id
+    util.jumpPage(1, "/pages/scenicMap/scenicMap?city_id=" + city_id)
   },
 
   //跳转到支付页
   jumpPayPage: function() {
-    util.jumpPage(1, "/pages/pay/pay")
+    var city_id = vm.data.city_id
+    util.jumpPage(1, "/pages/pay/pay?city_id=" + city_id)
   },
 
   //返回

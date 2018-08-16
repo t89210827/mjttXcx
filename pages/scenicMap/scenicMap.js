@@ -1,11 +1,8 @@
 // pages/scenicMap/scenicMap.js
 var vm = null
 var util = require("../../utils/util.js")
-
 var backgroundAudioManager = wx.getBackgroundAudioManager()
-
 Page({
-
   data: {
     markers: [{
       iconPath: "../../images/logo.png",
@@ -73,7 +70,10 @@ Page({
 
   },
   markertap(e) {
-    console.log(e.markerId)
+    console.log("地图标记点" + e.markerId)
+    wx.showToast({
+      title: 'e.markerId',
+    })
   },
   controltap(e) {
     console.log(e.controlId)
@@ -94,7 +94,105 @@ Page({
       windowHeight: windowHeight,
     })
 
+    var city_id = options.city_id
+    vm.setData({
+      city_id: city_id
+    })
+    // vm.scene_list() 景点列表
+    vm.upPageCityMap() //景点列表
+  },
 
+
+
+  //上一页的城市列表
+  upPageCityMap: function() {
+    var pages = getCurrentPages(); //获取当前页面信息栈
+    var prevPage = pages[pages.length - 2] //获取上一个页面信息栈
+    var sceneList = prevPage.data.sceneList //景点列表
+    var markers = [] //标记数组
+
+    for (var index in sceneList) {
+      if (index == 0) {
+        sceneList[index].check = true
+      } else {
+        sceneList[index].check = false
+      }
+
+    }
+
+    for (var index in sceneList) {
+      if (sceneList[index].latitude != 0) {
+        console.log("经纬度：" + JSON.stringify(sceneList[index].latitude))
+        vm.setData({
+          latitude: sceneList[index].latitude,
+          longitude: sceneList[index].longitude,
+          scene_id: index,
+          sceneList: sceneList
+        })
+        break;
+      }
+    }
+
+    for (var index in sceneList) {
+      var cityIndex = {
+        // iconPath: "../../images/destination.png",
+        id: index,
+        latitude: sceneList[index].latitude,
+        longitude: sceneList[index].longitude,
+        alpha: 1, //标注的透明度
+        // width: 100,
+        // height: 50,
+        title: "123", //标注点名
+        anchor: {
+          x: .5,
+          y: -1
+        }, //经纬度在标注图标的锚点，默认底边中点
+        callout: {
+          content: sceneList[index].name,
+          color: "#ececec",
+          bgColor: "#ff0000",
+          fontSize: 15,
+          padding: 10,
+          display: 'ALWAYS',
+          textAlign: "center",
+          borderRadius: 20,
+        },
+      }
+      markers.push(cityIndex)
+    }
+    vm.setData({
+      markers: markers
+    })
+  },
+
+  //搜索结果切换
+  slickSonScenic: function(e) {
+    console.log("搜索结果切换" + JSON.stringify(e.currentTarget.id))
+    var index = e.currentTarget.id
+    var sceneList = vm.data.sceneList
+    sceneList[index].check = true
+    for (var i in sceneList) {
+      if (i != index) {
+        sceneList[i].check = false
+      }
+    }
+    vm.setData({
+      sceneList: sceneList,
+      latitude: sceneList[index].latitude,
+      longitude: sceneList[index].longitude,
+
+    })
+  },
+
+
+  //景点列表
+  scene_list: function() {
+    var param = {
+      city_id: vm.data.city_id
+    }
+    util.scene_list(param, function(res) {
+      console.log("景点列表：" + JSON.stringify(res))
+    })
   },
 
 
@@ -116,28 +214,13 @@ Page({
 
 
 
-  //搜索结果切换
-  slickSonScenic: function(e) {
-    console.log("搜索结果切换" + JSON.stringify(e.currentTarget.id))
-    var index = e.currentTarget.id
-    var scenicMapList = vm.data.scenicMapList
-    scenicMapList[index].check = true
-    for (var i in scenicMapList) {
-      if (i != index) {
-        scenicMapList[i].check = false
-      }
-    }
-    vm.setData({
-      scenicMapList: scenicMapList
-    })
-  },
+
 
   //子景点切换
   sonScenic: function() {
     vm.setData({
       son_flag: !vm.data.son_flag,
     })
-
   },
 
   //返回
@@ -175,22 +258,19 @@ Page({
       console.log("播放停止")
     })
 
-    wx.getLocation({
-      type: 'wgs84',
-      success: function(res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-
-        // console.log("精度" + latitude)
-        // console.log("纬度" + longitude)
-        vm.setData({
-          latitude: latitude,
-          longitude: longitude
-        })
-      }
-    })
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   success: function(res) {
+    //     var latitude = res.latitude
+    //     var longitude = res.longitude
+    //     var speed = res.speed
+    //     var accuracy = res.accuracy
+    //     vm.setData({
+    //       latitude: latitude,
+    //       longitude: longitude
+    //     })
+    //   }
+    // })
 
     // 使用 wx.createMapContext 获取 map 上下文
     this.mapCtx = wx.createMapContext('map')

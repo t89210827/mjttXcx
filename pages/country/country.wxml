@@ -2,7 +2,7 @@
 <cover-view class='page-top-position'>
   <cover-view style='height:{{pageTopHeight}}px; background-color: #e31c17;'></cover-view>
   <cover-view class="page-top center-style" style='position: relative'>
-    <cover-view class='page-top-title'>中国大陆</cover-view>
+    <cover-view class='page-top-title'>{{city_list[0].country_name}}</cover-view>
     <cover-view style='position: absolute;top: 0rpx;left: 0rpx;width:200rpx;height:100rpx;' bindtap='back'>
       <cover-image src='../../images/back.png' style='width:50rpx;height:40rpx;position: absolute;top: 30rpx;left: 45rpx;'></cover-image>
     </cover-view>
@@ -12,13 +12,20 @@
 <view style='height:{{allHeight}}px'></view>
 
 <view>
-  <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.IBvxY31q2hGP414eac337e16648904877bfb713318c4.jpg?imageView2/1/w/750/h/300/interlac12e/1' style='width:750rpx;height:300rpx;' bindtap='jumpCityMapPage'></image>
+  <!-- <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.IBvxY31q2hGP414eac337e16648904877bfb713318c4.jpg?imageView2/1/w/750/h/300/interlac12e/1' style='width:750rpx;height:300rpx;' bindtap='jumpCityMapPage'></image> -->
+  <image src='{{map}}' style='width:750rpx;height:300rpx;' mode="aspectFill" bindtap='jumpCityMapPage'></image>
 </view>
 
 <view style='margin:10rpx 25rpx;overflow:hidden;'>
 
-  <!-- <block wx:for="{{8}}"> -->
-  <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
+  <block wx:for="{{city_list}}">
+    <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage' id="{{item.id}}">
+      <image src='{{item.image}}' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
+      <view style='font-size: 28rpx;text-align:center;'>{{item.name}}</view>
+    </view>
+  </block>
+
+  <!-- <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
     <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.DXIsooURPd15a7ba3e1d022297fb17124913f861c7d6.jpg?imageView2/1/w/320/h/240/interlac12e/1' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
     <view style='font-size: 28rpx;text-align:center;'>故宫</view>
   </view>
@@ -56,10 +63,7 @@
   <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage'>
     <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.6jY9r28VjOAZ1d73af85d858d6d9c0561bc0e82c0c44.jpg?imageView2/1/w/320/h/240/interlac12e/1' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
     <view style='font-size: 28rpx;text-align:center;'>故宫</view>
-  </view>
+  </view> -->
 
-
-
-  <!-- </block> -->
 
 </view>

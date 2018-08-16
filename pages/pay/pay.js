@@ -17,9 +17,21 @@ Page({
     vm = this
     var screenHeight = getApp().globalData.screenHeight
     var place = getApp().globalData.place //导航栏高度
+    var city_id = options.city_id
     vm.setData({
       pageTopHeight: screenHeight,
       allHeight: place,
+      city_id: city_id
+    })
+    vm.payment_price_info()
+  },
+
+  payment_price_info: function() {
+    var param = {
+      city_id: vm.data.city_id
+    }
+    util.payment_price_info(param, function(res) {
+      console.log("解锁作品：" + JSON.stringify(res))
     })
   },
 
