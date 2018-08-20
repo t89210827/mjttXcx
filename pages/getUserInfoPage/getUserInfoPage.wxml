@@ -1,0 +1,13 @@
+<!--pages/getUserInfoPage/getUserInfoPage.wxml-->
+<view style='height:300rpx'></view>
+<view class='center-style'>
+  <image src='../../images/logo.png' style="width:200rpx;height:200rpx;border-radius:50%;"></image>
+</view>
+
+<view style='height:100rpx;'></view>
+
+<button style='height:80rpx;line-height:80rpx;background-color:#E21C14;width:50%;border-radius:50rpx;color:#fff;' lang='zh_CN' bindgetuserinfo="getUserInfo" open-type="getUserInfo">获取用户信息</button>
+
+<view class='center-style' style='width:750rpx;'>
+  <view class='zan-font-18' style='width:600rpx;margin-top:100rpx;color:#999;'>请授权获取您的用户信息,否则重要功能将无法使用。</view>
+</view>

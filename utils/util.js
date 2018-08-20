@@ -43,6 +43,12 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
   });
 }
 
+//登录获取用户信息
+function user_login(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/user/login/', param, "POST", successCallback, errorCallback)
+}
+
+
 //获取banner图
 function ad_getADs(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + 'rest/miniapp/banner/', param, "GET", successCallback, errorCallback)
@@ -85,7 +91,7 @@ function payment_price_info(param, successCallback, errorCallback) {
 
 
 
-// http://localhost/kwServer/public/api/shareXCX/shareXCX
+// http://localhost/kwServer/public/rest/miniapp/user/login/
 
 var swapItems = function(arr, index1, index2) {
   arr[index1] = arr.splice(index2, 1, arr[index1])[0];
@@ -854,4 +860,5 @@ module.exports = {
   city_list: city_list, //城市列表
   scene_list: scene_list, //景点列表
   payment_price_info: payment_price_info, //解锁价格信息列表
+  user_login: user_login, //登录获取用户信息
 }

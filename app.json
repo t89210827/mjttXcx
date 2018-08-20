@@ -12,7 +12,8 @@
     "pages/myPage/contactUs/contactUs",
     "pages/myPage/Setting/Setting",
     "pages/selectCity/selectCity",
-    "pages/scenicMap/scenicMap"
+    "pages/scenicMap/scenicMap",
+    "pages/getUserInfoPage/getUserInfoPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

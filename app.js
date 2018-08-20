@@ -3,10 +3,9 @@ var vm = null
 App({
   onLaunch: function() {
     vm = this
-    // wx.getSystemInfoSync({
-    //   success: function(res) {
-    //   },
-    // })
+
+    
+
     try {
       var res = wx.getSystemInfoSync()
       var screenHeight = res.statusBarHeight //状态栏高度
