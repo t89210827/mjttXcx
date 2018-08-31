@@ -14,7 +14,11 @@
     "pages/scenicMap/scenicMap",
     "pages/getUserInfoPage/getUserInfoPage",
     "pages/webview/webview",
-    "pages/countryMap/countryMap"
+    "pages/countryMap/countryMap",
+    "pages/cityMap/cityMap"
+  ],
+  "requiredBackgroundModes": [
+    "audio"
   ],
   "window": {
     "backgroundTextStyle": "light",

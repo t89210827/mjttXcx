@@ -15,13 +15,12 @@
 </cover-view>
 
 <view style='height:{{allHeight}}px;margin-bottom:-1rpx;'></view>
-
 <block wx:if="{{network}}">
 
   <swiper indicator-dots="true" indicator-color="#FFFFFF" indicator-active-color="#e31c17" autoplay="true" interval="5000" duration="600" style="height:316rpx" circular="true">
     <block wx:for="{{ads}}" wx:key="*this">
       <swiper-item>
-        <image src="{{item.image}}?imageView2/1/w/750/h/316/interlac12e/1" style='width:750rpx;height:316rpx;' width="750rpx" />
+        <image bindtap='jumpPage' id="{{index}}" src="{{item.image}}?imageView2/1/w/750/h/316/interlac12e/1" style='width:750rpx;height:316rpx;' width="750rpx" />
       </swiper-item>
     </block>
   </swiper>
@@ -77,12 +76,13 @@
     <block wx:for="{{sceneList}}">
       <view style='width:50%;float:left;margin-top:20rpx;position: relative;' bindtap='jumpscenicMapPage' id="{{index}}" data-playStatus=''>
         <!-- <image src='http://dsyy.isart.me/tmp/wx9b70c1acbcfda86b.o6zAJs3FFzas02nMmUHEIaQsPMXk.DXIsooURPd15a7ba3e1d022297fb17124913f861c7d6.jpg?imageView2/1/w/320/h/240/interlac12e/1' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image> -->
+
         <image src='{{item.image}}' style='width:320rpx;height:240rpx;margin:0rpx 15rpx;border-radius: 10rpx;'></image>
         <view style='font-size: 28rpx;text-align:center;'>{{item.name}}</view>
         <image src='../../images/explain.png' style='position: absolute;top: 20rpx;left: 0rpx;width:136rpx;height:48rpx;'></image>
         <view style='position: absolute;top: 32rpx;left: 15rpx;font-size:24rpx;color:#fff;'>{{item.subscenes}}处介绍</view>
 
-        <view wx:if="{{item.playStatus == 'pause' || item.playStatus == 'play'}}" class="wrap">
+        <view wx:if="{{item.showProgress}}" class="wrap">
           <view class="right-part">
             <view class="right" style='{{right}}' id="right"></view>
             <view class="r-shadow"></view>
@@ -93,7 +93,7 @@
           </view>
         </view>
 
-        <image src='{{item.playStatus == "play" ? "../../images/pause.png":"../../images/play.png"}}' style='position: absolute;top: 80rpx;left: 134rpx;width:78rpx;height:78rpx;'></image>
+        <image src='{{item.playStatus ? "../../images/pause.png":"../../images/play.png"}}' style='position: absolute;top: 80rpx;left: 134rpx;width:78rpx;height:78rpx;'></image>
       </view>
     </block>
 
@@ -111,6 +111,5 @@
     <button bindtap='refresh' style='font-size: 32rpx;background: #E31C17;color: #FFFFFF;letter-spacing: -0.94px;line-height:80rpx;margin:15rpx;border-radius: 40rpx;width:600rpx;letter-spacing: 4rpx;' class='text-oneline'>点击刷新</button>
   </view>
 </block>
-
 
 <view style='height:50rpx;'></view>

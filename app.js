@@ -1,5 +1,6 @@
 //app.js
 var vm = null
+
 App({
   onLaunch: function() {
     vm = this

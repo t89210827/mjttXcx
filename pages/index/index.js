@@ -7,9 +7,7 @@ var vm = this
 // 引入SDK核心类
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
-
 var backgroundAudioManager = wx.getBackgroundAudioManager()
-
 Page({
   data: {
     pageTopHeight: "",
@@ -26,7 +24,7 @@ Page({
     address: "", //所在城市
     sceneList: [], //景点列表
     hot_city: [], //热门城市
-    runningStatus: "pause",
+    playAddress: "", //播放地址
     network: true, //网络状态
   },
 
@@ -94,6 +92,24 @@ Page({
     })
   },
 
+  jumpPage: function(e) {
+    // console.log("获取轮播图接口返回：" + JSON.stringify(e))
+    var ad_index = e.currentTarget.id
+    var ads = vm.data.ads
+    if (ads[ad_index].scene.name != undefined) {
+      // console.log("------------：" + JSON.stringify(ads[ad_index].scene.name))
+      util.jumpPage(1, "/pages/webview/webview?scene_id=" + ads[ad_index].scene.id)
+    } else if (ads[ad_index].city.name != undefined) {
+      // console.log("------------：" + JSON.stringify(ads[ad_index].city.name))
+      util.jumpPage(1, "/pages/city/city?city_id=" + ads[ad_index].city.id)
+    } else if (ads[ad_index].country.name != undefined) {
+      // console.log("------------：" + JSON.stringify(ads[ad_index].city.name))
+      util.jumpPage(1, "/pages/country/country?country_id=" + ads[ad_index].country.id)
+    } else {
+
+    }
+  },
+
   //热门城市
   hot_city: function() {
     util.hot_city({}, function(res) {
@@ -112,7 +128,10 @@ Page({
   },
 
   onShow: function() {
-    vm.getSetting() //获取位置
+    if (vm.data.sceneList.length == 0) {
+      vm.getSetting() //获取位置
+    }
+    vm.backgroundAudioManagerCall() //刷新音频回调时间
   },
 
   //用户所在 城市与附近景点列表
@@ -126,9 +145,9 @@ Page({
         var address = res.data.data.city.name
         var sceneList = res.data.data.scene_list
 
-        for (var i = 0; i < sceneList.length; i++) {
-          sceneList[i].playStatus = 'stop'
-        }
+        // for (var i = 0; i < sceneList.length; i++) {
+        //   sceneList[i].playStatus = 'stop'
+        // }
 
         vm.setData({
           address: address,
@@ -243,41 +262,110 @@ Page({
 
     var index = e.currentTarget.id
     var sceneList = vm.data.sceneList
-    // console.log(JSON.stringify(sceneList[index]))
-    if (sceneList[index].playStatus == 'stop') {
-      console.log("播放")
+
+    var sonSceneNum = sceneList[index].subscenes
+
+    // if (sonSceneNum > 1) {
+    //   util.jumpPage(1, "/pages/webview/webview?scene_id=" + sceneList[index].id)
+    //   return
+    // }
+
+    var playAddress = vm.data.playAddress //目前backgroundAudioManager中音频地址
+    console.log("当前音频状态：" + backgroundAudioManager.paused)
+
+    // data中url是否为当前url
+    if (sceneList[index].audios[0].audio == playAddress) {
+      util.showLoading()
+      // 如果暂停或停止
+      if (backgroundAudioManager.paused) {
+        backgroundAudioManager.play()
+        //显示进度及播放icon
+        sceneList[index].playStatus = true
+        sceneList[index].playStatus = true
+        vm.setData({
+          sceneList: sceneList
+        })
+        //如果是播放状态
+      } else {
+        //显示进度及停止icon
+        sceneList[index].playStatus = false
+        sceneList[index].showProgress = true
+        vm.setData({
+          sceneList: sceneList
+        })
+        vm.pause()
+      }
+    } else {
       util.showLoading()
 
       backgroundAudioManager.src = sceneList[index].audios[0].audio // 设置了src之后会自动播放      
       backgroundAudioManager.title = sceneList[index].audios[0].title
-      sceneList[index].playStatus = 'play'
-
+      backgroundAudioManager.play()
       for (var i = 0; i < sceneList.length; i++) {
         if (index != i) {
-          sceneList[i].playStatus = 'stop'
+          console.log("当前音频状态：")
+          sceneList[i].playStatus = false
+          sceneList[i].showProgress = false
         }
       }
-
-      vm.play(sceneList[index].audios[0])
+      //显示进度及播放icon
+      sceneList[index].playStatus = true
+      sceneList[index].showProgress = true
       vm.setData({
-        sceneList: sceneList
-      })
-
-    } else if (sceneList[index].playStatus == 'pause') {
-      console.log("暂停之后播放")
-      backgroundAudioManager.play()
-      sceneList[index].playStatus = 'play'
-      vm.setData({
-        sceneList: sceneList
-      })
-    } else {
-      console.log("暂停")
-      vm.pause()
-      sceneList[index].playStatus = 'pause'
-      vm.setData({
+        playAddress: sceneList[index].audios[0].audio,
         sceneList: sceneList
       })
     }
+
+
+    // if (backgroundAudioManager.paused) {
+    //   if (sceneList[index].audios[0].audio == playAddress) {
+    //     backgroundAudioManager.play()
+    //   } else {
+    //     backgroundAudioManager.src = sceneList[index].audios[0].audio // 设置了src之后会自动播放      
+    //     backgroundAudioManager.title = sceneList[index].audios[0].title
+    //     backgroundAudioManager.play()
+    //   }
+    // } else {
+    //   vm.pause()
+    // }
+
+    // if (sceneList[index].playStatus == 'stop') {
+    //   console.log("播放")
+    //   util.showLoading()
+
+    //   backgroundAudioManager.src = sceneList[index].audios[0].audio // 设置了src之后会自动播放      
+    //   backgroundAudioManager.title = sceneList[index].audios[0].title
+    //   sceneList[index].playStatus = 'play'
+
+    //   for (var i = 0; i < sceneList.length; i++) {
+    //     if (index != i) {
+    //       sceneList[i].playStatus = 'stop'
+    //     }
+    //   }
+
+    //   vm.play(sceneList[index].audios[0])
+    //   vm.setData({
+    //     sceneList: sceneList
+    //   })
+
+    // } else if (sceneList[index].playStatus == 'pause') {
+    //   console.log("暂停之后播放")
+    //   backgroundAudioManager.play()
+    //   sceneList[index].playStatus = 'play'
+    //   vm.setData({
+    //     sceneList: sceneList
+    //   })
+    // } else {
+    //   console.log("暂停")
+    //   vm.pause()
+    //   sceneList[index].playStatus = 'pause'
+    //   vm.setData({
+    //     sceneList: sceneList
+    //   })
+    // }
+
+
     // if (sceneList[index].subscene == 0) {
     //   console.log("子景点为零")
     // } else { 
@@ -330,11 +418,8 @@ Page({
     util.jumpPage(1, "/pages/selectCity/selectCity")
   },
 
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
+  //音频回调
+  backgroundAudioManagerCall: function() {
     backgroundAudioManager.onPlay(function(res) {
       // console.log("播放回调")
     })
@@ -348,33 +433,41 @@ Page({
     backgroundAudioManager.onEnded(function(res) {
       console.log("播放自动停止")
       var sceneList = vm.data.sceneList
-
       for (var i = 0; i < sceneList.length; i++) {
-        sceneList[i].playStatus = 'stop'
+        sceneList[i].playStatus = false
+        sceneList[i].showProgress = false
       }
-
       vm.setData({
-        sceneList: sceneList
+        sceneList: sceneList,
+        playAddress: '',
       })
 
     })
 
     // 播放进度更新
     backgroundAudioManager.onTimeUpdate(function(res) {
+      util.hideLoading()
       var percentage = backgroundAudioManager.currentTime / backgroundAudioManager.duration
       vm.progressBar(percentage)
     })
 
     // 音频进入可以播放状态，但不保证后面可以流畅播放
     backgroundAudioManager.onCanplay(function(res) {
-      console.log("首页暂停loading")
-      util.hideLoading()
+      // console.log("音频进入可以播放状态，但不保证后面可以流畅播放")
+      // util.hideLoading()
     })
 
     // 音频加载中事件，当音频因为数据不足，需要停下来加载时会触发
     backgroundAudioManager.onWaiting(function(res) {
-      util.showLoading()
+      // util.showLoading()
     })
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
 
   },
 

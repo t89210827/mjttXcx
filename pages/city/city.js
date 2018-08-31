@@ -6,14 +6,15 @@ var backgroundAudioManager = wx.getBackgroundAudioManager()
 
 Page({
 
-  /**
+  /**`
    * 页面的初始数据
    */
   data: {
     city_id: "", //城市id
-    right: "",
-    left: "",
-    desc: "",
+    right: "", //进度条样式
+    left: "", //进度条样式
+    desc: "", //进度条样式
+    lock_list: "", //解锁类型列表
   },
 
   /**
@@ -33,8 +34,21 @@ Page({
       pageTopHeight: screenHeight,
       allHeight: place,
     })
+    vm.scene_list() //获取景点列表
+    vm.payment_price_info() //获取解锁类型列表
+  },
 
-    vm.scene_list()
+  //获取解锁类型列表
+  payment_price_info: function() {
+    var param = {
+      city_id: vm.data.city_id
+    }
+    util.payment_price_info(param, function(res) {
+      console.log("解锁类型列表：" + JSON.stringify(res))
+      vm.setData({
+        lock_list: res.data.data
+      })
+    })
   },
 
   //景点列表
@@ -58,6 +72,7 @@ Page({
     })
   },
 
+  //点击播放或暂停按钮
   jumpscenicMapPage: function(e) {
     var index = e.currentTarget.id
     var sceneList = vm.data.sceneList
@@ -136,6 +151,7 @@ Page({
     })
   },
 
+  //进度条
   progressBar: function(percentage) {
     var p = Math.round(percentage * 100);
     var deg = p * 3.6;
@@ -159,26 +175,7 @@ Page({
         left: left,
       })
     }
-    // if (desc.innerText) {
-    //   desc = p + "%"
-    // }
-    // if (desc.textContent) {
-    //   desc.textContent = p + "%";
-    // }
   },
-
-  // setTimeout: function() {
-  //   var g = 0;
-  //   setTimeout(function _a() {
-  //     if (g > 1) return;
-  //     vm.progressBar(g)
-  //     // progressBar(g);
-  //     g += 0.1
-  //     setTimeout(_a, 1000)
-  //   }, 1000)
-  // },
-
-
   /**
    * 生命周期函数--监听页面显示
    */

@@ -28,6 +28,7 @@ Page({
     vm.payment_price_info()
   },
 
+  //获取解锁类型列表
   payment_price_info: function() {
     var param = {
       city_id: vm.data.city_id
@@ -75,6 +76,20 @@ Page({
     }
     util.pay_pre_order(param, function(res) {
       console.log("支付信息" + JSON.stringify(res))
+      var payMassage = res.data.data
+      wx.requestPayment({
+        'timeStamp': payMassage.timeStamp + '',
+        'nonceStr': payMassage.nonceStr,
+        'package': payMassage.package,
+        'signType': payMassage.signType,
+        'paySign': payMassage.paySign,
+        'success': function(res) {
+          console.log("支付成功")
+        },
+        'fail': function(res) {
+          console.log("支付失败")
+        }
+      })
     })
 
     // wx.showActionSheet({

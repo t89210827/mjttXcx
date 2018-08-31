@@ -39,7 +39,7 @@
   </view>
 </view>
 
-<view style='font-size: 36rpx;color: #333333;letter-spacing: -0.43px;margin-top:20rpx;line-height:80rpx;background:#fff;'>
+<!-- <view style='font-size: 36rpx;color: #333333;letter-spacing: -0.43px;margin-top:20rpx;line-height:80rpx;background:#fff;'>
   <view style='margin:0rpx 40rpx;'>
     <view style='line-height:80rpx;display:flex;' class='flex-row'>
       <view style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #333333;letter-spacing: 0.17px;width:50%;'>清除缓存</view>
@@ -53,4 +53,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->

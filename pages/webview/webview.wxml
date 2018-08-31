@@ -1,2 +1,2 @@
 <!--pages/webview/webview.wxml-->
-<web-view src="https://ywjh.tongziqing.xyz/scenicmap.html?city_id={{city_id}}"></web-view>
+<web-view src="https://ywjh.tongziqing.xyz/scenicmap.html"></web-view>

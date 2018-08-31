@@ -57,3 +57,13 @@
 
   </view>
 </block>
+
+<block wx:else>
+  <view class='center-style' style='flex-direction: column;width:750rpx;height:{{windowHeight}}px;'>
+    <view style='height:50rpx;'></view>
+    <image src='../../images/err.png' style='width:300rpx;height:300rpx;'></image>
+    <view style='height:50rpx;font-family: PingFang-SC-Regular;font-size: 32rpx;color: #666666;letter-spacing: 1px;text-align: center;'>网络加载失败，请检查网络后刷新</view>
+    <view style='height:40rpx;'></view>
+    <button bindtap='refresh' style='font-size: 32rpx;background: #E31C17;color: #FFFFFF;letter-spacing: -0.94px;line-height:80rpx;margin:15rpx;border-radius: 40rpx;width:600rpx;letter-spacing: 4rpx;' class='text-oneline'>点击刷新</button>
+  </view>
+</block>

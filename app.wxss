@@ -25,6 +25,14 @@ page {
   letter-spacing: 0.35px;
   text-align: center;
   line-height: 100rpx;
+  max-width: 430rpx;
+  /* 一行文字 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-background {

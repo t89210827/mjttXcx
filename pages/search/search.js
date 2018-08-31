@@ -144,9 +144,10 @@ Page({
   },
 
   //存入缓存
-  searchHistory: function(e) {
+  searchHistory: function(keyword) {
     // console.log("键盘输入时触发" + JSON.stringify(e))
     // var keyword = e.detail.value
+    var keyword = vm.data.keyword
     var searchHistory = getApp().globalData.searchHistory
     searchHistory.unshift(keyword)
     getApp().globalData.searchHistory = searchHistory
@@ -204,7 +205,8 @@ Page({
   onShow: function() {
     var searchHistory = getApp().globalData.searchHistory
     vm.setData({
-      searchHistory: searchHistory
+      searchHistory: searchHistory,
+      keyword: ''
     })
   },
 
