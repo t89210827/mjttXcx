@@ -60,7 +60,7 @@ Page({
   },
 
   //跳转到国家页
-  jumpCountryPage: function () {
+  jumpCountryPage: function() {
     util.jumpPage(1, "/pages/country/country")
   },
 
@@ -69,11 +69,30 @@ Page({
     util.jumpPage(4, 1)
   },
 
+  //跳转到城市页
+  jumpCityPage: function(e) {
+    var city_id = e.target.id
+    util.jumpPage(1, "/pages/city/city?city_id=" + city_id)
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+    vm.search_table()
+  },
 
+  //搜索页面国内,国际城市,国家表格
+  search_table: function() {
+    util.search_table({}, function(res) {
+      if (res.data.code == 0) {
+        console.log("搜索页面国内,国际城市,国家表格" + JSON.stringify(res))
+        var city_list = res.data.data
+        vm.setData({
+          city_list: city_list
+        })
+      }
+    })
   },
 
   /**

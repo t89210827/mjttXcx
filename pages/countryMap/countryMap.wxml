@@ -1,0 +1,2 @@
+<!--pages/countryMap/countryMap.wxml-->
+<web-view src="https://ywjh.tongziqing.xyz/countrymap.html?country_id={{country_id}}"></web-view>

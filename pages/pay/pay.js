@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    deblockingSwitch: 1 //购买类型  1城市解锁  2 全球解锁
+    deblockingSwitch: 1, //购买类型  1城市解锁  2 国家解锁  3 全球解锁
+    city_id: '', //城市id
   },
 
   /**
@@ -17,7 +18,8 @@ Page({
     vm = this
     var screenHeight = getApp().globalData.screenHeight
     var place = getApp().globalData.place //导航栏高度
-    var city_id = options.city_id
+    // var city_id = options.city_id
+    var city_id = '13'
     vm.setData({
       pageTopHeight: screenHeight,
       allHeight: place,
@@ -32,6 +34,9 @@ Page({
     }
     util.payment_price_info(param, function(res) {
       console.log("解锁作品：" + JSON.stringify(res))
+      vm.setData({
+        lock_list: res.data.data
+      })
     })
   },
 
@@ -50,19 +55,41 @@ Page({
 
   // 支付
   pay: function() {
-    wx.showActionSheet({
-      itemList: ['支付成功', '支付失败'],
-      success: function(res) {
-        if (res.tapIndex == 0) {
-          util.jumpPage(4, 1)
-        } else if (res.tapIndex == 1) {
-          util.jumpPage(1, "/pages/payFail/payFail")
-        }
-      },
-      fail: function(res) {
-        console.log(res.errMsg)
+    var userInfo = wx.getStorageSync("userInfo");
+    console.log("用户信息" + JSON.stringify(userInfo))
+    var deblockingSwitch = vm.data.deblockingSwitch
+    var param = {}
+    if (deblockingSwitch == 1) {
+      param = {
+        user_id: userInfo.id,
+        purchase_type: "unlock_city",
+        city_id: vm.data.city_id
       }
+    } else if (deblockingSwitch == 2) {
+
+    } else {
+      param = {
+        user_id: userInfo.id,
+        purchase_type: "unlock_world",
+      }
+    }
+    util.pay_pre_order(param, function(res) {
+      console.log("支付信息" + JSON.stringify(res))
     })
+
+    // wx.showActionSheet({
+    //   itemList: ['支付成功', '支付失败'],
+    //   success: function(res) {
+    //     if (res.tapIndex == 0) {
+    //       util.jumpPage(4, 1)
+    //     } else if (res.tapIndex == 1) {
+    //       util.jumpPage(1, "/pages/payFail/payFail")
+    //     }
+    //   },
+    //   fail: function(res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
   },
 
   /**

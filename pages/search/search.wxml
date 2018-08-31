@@ -11,7 +11,7 @@
 
 <view class='search-background' style='position: fixed;top:{{place}}px;z-index:1000'>
   <view class='search-border'>
-    <input class='input-style' placeholder-style="font-size:28rpx;" maxlength="15" placeholder="搜索地区、景区、景点(中英文均可）" bindinput="" bindconfirm="bindinput" bindfocus="focus" bindblur="loseFocus"></input>
+    <input class='input-style' placeholder-style="font-size:28rpx;" maxlength="15" placeholder="搜索地区、景区、景点(中英文均可）" bindinput="bindinput" bindconfirm="bindconfirm" bindfocus="focus" bindblur="loseFocus"></input>
     <image src='../../images/search.png' class='search-icon'></image>
   </view>
   <view style='height:25rpx;background-color: #e31c17;'></view>
@@ -19,11 +19,11 @@
 
 <view style='height:{{allHeight}}px'></view>
 
-<block wx:if="{{inputFocus}}">
+<block wx:if="{{keyword != ''}}">
   <scroll-view scroll-y style="width:860rpx;height:{{searchResultListHeight}}px;" scroll-with-animation="{{true}}" bindscroll="scroll" scroll-into-view="{{areaInitialIndex}}">
 
     <block wx:for="{{searchResult.country_list}}">
-      <view>
+      <view bindtap='jumpSearchRet' id='1' data-countryid='{{item.id}}'>
         <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #A4A4A4;letter-spacing: 0.22px;line-height:100rpx;margin-left:40rpx;'>[城市]</text>
         <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #151515;line-height:100rpx;margin-left:20rpx;'>{{item.name}}</text>
         <text style='font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666666;line-height:100rpx;margin-left:10rpx;'>({{item.country_name}}</text>
@@ -32,7 +32,7 @@
     </block>
 
     <block wx:for="{{searchResult.scene_list}}">
-      <view>
+      <view bindtap='jumpSearchRet' id='2' data-scenicid='{{item.id}}'>
         <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #A4A4A4;letter-spacing: 0.22px;line-height:100rpx;margin-left:40rpx;'>[景区]</text>
         <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #151515;line-height:100rpx;margin-left:20rpx;'>{{item.name}}</text>
         <!-- <text style='font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666666;line-height:100rpx;margin-left:10rpx;'>(捷克-卡罗维发利)</text> -->
@@ -42,7 +42,7 @@
     </block>
 
     <block wx:for="{{searchResult.city_list}}">
-      <view>
+      <view bindtap='jumpSearchRet' id='3' data-cityid='{{item.id}}'>
         <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #A4A4A4;letter-spacing: 0.22px;line-height:100rpx;margin-left:40rpx;'>[地区]</text>
         <text style='font-family: PingFang-SC-Regular;font-size: 28rpx;color: #151515;line-height:100rpx;margin-left:20rpx;'>{{item.name}}</text>
         <!-- <text style='font-family: PingFang-SC-Regular;font-size: 24rpx;color: #666666;line-height:100rpx;margin-left:10rpx;'>(捷克-卡罗维发利)</text> -->

@@ -67,7 +67,6 @@ Page({
         console.log(res.scale)
       }
     })
-
   },
   markertap(e) {
     console.log("地图标记点" + e.markerId)
@@ -244,6 +243,7 @@ Page({
       })
       console.log("播放回调")
     })
+    
     backgroundAudioManager.onPause(function(res) {
       vm.setData({
         runningStatus: "pause"

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -32,10 +32,10 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "搜索页面",
 					"pathName": "pages/search/search",
 					"query": ""
@@ -47,10 +47,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "城市页",
 					"pathName": "pages/city/city",
-					"query": ""
+					"query": "city_id=298"
 				},
 				{
 					"id": -1,
@@ -109,7 +109,14 @@
 				{
 					"id": -1,
 					"name": "获取用户信息页面",
-					"pathName": "pages/getUserInfoPage/getUserInfoPage"
+					"pathName": "pages/getUserInfoPage/getUserInfoPage",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "webview",
+					"pathName": "pages/webview/webview",
+					"query": ""
 				}
 			]
 		}

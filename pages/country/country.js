@@ -67,11 +67,13 @@ Page({
   jumpCityMapPage: function() {
     // var latitude = vm.data.city_list[0].latitude
     // var longitude = vm.data.city_list[0].longitude
-    util.jumpPage(1, "/pages/cityMap/cityMap")
+    util.jumpPage(1, "/pages/countryMap/countryMap?country_id=" + vm.data.country_id)
   },
 
   // 跳转到城市页面
   jumpCityPage: function() {
+    // util.jumpPage(1, "/pages/countryMap/countryMap?country_id=" + vm.data.country_id)
+
     util.jumpPage(1, "/pages/city/city")
   },
 

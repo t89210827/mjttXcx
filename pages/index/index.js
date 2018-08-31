@@ -8,6 +8,8 @@ var vm = this
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
 var qqmapsdk;
 
+var backgroundAudioManager = wx.getBackgroundAudioManager()
+
 Page({
   data: {
     pageTopHeight: "",
@@ -24,6 +26,8 @@ Page({
     address: "", //所在城市
     sceneList: [], //景点列表
     hot_city: [], //热门城市
+    runningStatus: "pause",
+    network: true, //网络状态
   },
 
   onLoad: function() {
@@ -32,12 +36,13 @@ Page({
     var place = getApp().globalData.place //导航栏高度
     var proportion = getApp().globalData.proportion //1px = ?rpx
     var allHeight = place + (105 * proportion) //顶部全部高度
+    var windowHeight = getApp().globalData.windowHeight - allHeight - screenHeight - place //窗口可用高度
     vm.setData({
       pageTopHeight: screenHeight,
       place: place,
-      allHeight: allHeight
+      allHeight: allHeight,
+      windowHeight: windowHeight
     })
-    vm.getSetting()
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'PBCBZ-YPUWO-NVKWB-SOH76-UI7D2-5XFBE'
@@ -50,7 +55,26 @@ Page({
   AllFunction: function() {
     vm.ad_getADs() //获取轮播图
     vm.hot_city() //热门城市
-    // vm.miniapp_nearby_city_scene_list() //用户所在 城市与附近景点列表
+    // vm.getSetting() //获取位置
+    vm.isLogin() //判断是否登录
+  },
+
+  //刷新
+  refresh: function() {
+    vm.setData({
+      network: true
+    })
+    vm.AllFunction()
+    vm.getSetting() //获取位置
+  },
+
+  //判断是否登录
+  isLogin: function() {
+    var userInfo = wx.getStorageSync("userInfo");
+    console.log("判断是否登录：" + JSON.stringify(userInfo))
+    if (userInfo == "") {
+      util.jumpPage(1, "/pages/getUserInfoPage/getUserInfoPage")
+    }
   },
 
   //获取轮播图
@@ -63,24 +87,32 @@ Page({
           ads: res.data.data
         })
       }
+    }, function(err) {
+      vm.setData({
+        network: false
+      })
     })
   },
 
   //热门城市
   hot_city: function() {
     util.hot_city({}, function(res) {
-      console.log("热门城市接口返回：" + JSON.stringify(res))
+      // console.log("热门城市接口返回：" + JSON.stringify(res))
       if (res.data.code == 0) {
         var hot_city = res.data.data
         vm.setData({
           hot_city: hot_city
         })
       }
+    }, function(err) {
+      vm.setData({
+        network: false
+      })
     })
   },
 
   onShow: function() {
-
+    vm.getSetting() //获取位置
   },
 
   //用户所在 城市与附近景点列表
@@ -93,12 +125,21 @@ Page({
       if (res.data.code == 0) {
         var address = res.data.data.city.name
         var sceneList = res.data.data.scene_list
+
+        for (var i = 0; i < sceneList.length; i++) {
+          sceneList[i].playStatus = 'stop'
+        }
+
         vm.setData({
           address: address,
           sceneList: sceneList,
         })
-        // console.log("用户所在城市与附近景点列表返回：" + JSON.stringify(res))
+        console.log("用户所在城市与附近景点列表返回：" + JSON.stringify(res))
       }
+    }, function(err) {
+      vm.setData({
+        network: false
+      })
     })
 
   },
@@ -138,6 +179,7 @@ Page({
         console.log("获取经纬度失败：" + JSON.stringify(err))
       }
     })
+
   },
 
   //获取位置
@@ -197,13 +239,143 @@ Page({
   },
 
   // 跳转到景点地图页面
-  jumpscenicMapPage: function() {
-    util.jumpPage(1, "/pages/scenicMap/scenicMap")
+  jumpscenicMapPage: function(e) {
+
+    var index = e.currentTarget.id
+    var sceneList = vm.data.sceneList
+    // console.log(JSON.stringify(sceneList[index]))
+    if (sceneList[index].playStatus == 'stop') {
+      console.log("播放")
+      util.showLoading()
+
+      backgroundAudioManager.src = sceneList[index].audios[0].audio // 设置了src之后会自动播放      
+      backgroundAudioManager.title = sceneList[index].audios[0].title
+      sceneList[index].playStatus = 'play'
+
+      for (var i = 0; i < sceneList.length; i++) {
+        if (index != i) {
+          sceneList[i].playStatus = 'stop'
+        }
+      }
+
+      vm.play(sceneList[index].audios[0])
+      vm.setData({
+        sceneList: sceneList
+      })
+
+    } else if (sceneList[index].playStatus == 'pause') {
+      console.log("暂停之后播放")
+      backgroundAudioManager.play()
+      sceneList[index].playStatus = 'play'
+      vm.setData({
+        sceneList: sceneList
+      })
+    } else {
+      console.log("暂停")
+      vm.pause()
+      sceneList[index].playStatus = 'pause'
+      vm.setData({
+        sceneList: sceneList
+      })
+    }
+    // if (sceneList[index].subscene == 0) {
+    //   console.log("子景点为零")
+    // } else { 
+    //   util.jumpPage(1, "/pages/scenicMap/scenicMap")
+    // }
   },
+
+  // 继续播放
+
+
+  //播放
+  play: function(audio) {
+    backgroundAudioManager.play()
+  },
+
+  //暂停
+  pause: function() {
+    var percentage = backgroundAudioManager.currentTime / backgroundAudioManager.duration
+    backgroundAudioManager.pause()
+    vm.progressBar(percentage)
+  },
+
+  progressBar: function(percentage) {
+    var p = Math.round(percentage * 100);
+    var deg = p * 3.6;
+    var right = "";
+    var left = "";
+    var desc = "";
+    if (p > 100 || p < 0) p = 100;
+    if (deg <= 180) {
+      right = "transform:rotate(" + (deg - 180) + "deg);"
+      left = "background:#fff;"
+      vm.setData({
+        right: right,
+        left: left,
+      })
+    } else {
+      right = "transform:none;"
+      left = "background:#e31c17;transform:rotate(" + (deg - 360) + "deg);"
+      vm.setData({
+        right: right,
+        left: left,
+      })
+    }
+  },
+
 
   // 跳转到城市选择页面
   jumpSelectCity: function() {
     util.jumpPage(1, "/pages/selectCity/selectCity")
-  }
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+    backgroundAudioManager.onPlay(function(res) {
+      // console.log("播放回调")
+    })
+    backgroundAudioManager.onPause(function(res) {
+      // console.log("播放暂停")
+    })
+    backgroundAudioManager.onStop(function(res) {
+      // console.log("播放停止")
+    })
+    // 自动播放停止
+    backgroundAudioManager.onEnded(function(res) {
+      console.log("播放自动停止")
+      var sceneList = vm.data.sceneList
+
+      for (var i = 0; i < sceneList.length; i++) {
+        sceneList[i].playStatus = 'stop'
+      }
+
+      vm.setData({
+        sceneList: sceneList
+      })
+
+    })
+
+    // 播放进度更新
+    backgroundAudioManager.onTimeUpdate(function(res) {
+      var percentage = backgroundAudioManager.currentTime / backgroundAudioManager.duration
+      vm.progressBar(percentage)
+    })
+
+    // 音频进入可以播放状态，但不保证后面可以流畅播放
+    backgroundAudioManager.onCanplay(function(res) {
+      console.log("首页暂停loading")
+      util.hideLoading()
+    })
+
+    // 音频加载中事件，当音频因为数据不足，需要停下来加载时会触发
+    backgroundAudioManager.onWaiting(function(res) {
+      util.showLoading()
+    })
+
+  },
 
 })

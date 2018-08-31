@@ -1,46 +1,27 @@
-// pages/myPage/order/order.js
-var vm = null
-var util = require("../../../utils/util.js")
+// pages/webview/webview.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    city_id: ""
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    vm = this
-    var screenHeight = getApp().globalData.screenHeight
-    var place = getApp().globalData.place //导航栏高度
-    vm.setData({
-      pageTopHeight: screenHeight,
-      allHeight: place,
+    var city_id = options.city_id
+    this.setData({
+      city_id: city_id
     })
+    // options.url ? 
+    // this.setData({
+    //   url: options.url
+    // }) : wx.navigateBack({F
+    //   delta: 2
+    // });
 
-    vm.pay_purchased_record()
-  },
-
-  //获取已购列表
-  pay_purchased_record: function() {
-    var userInfo = wx.getStorageSync("userInfo");
-    console.log("用户信息" + JSON.stringify(userInfo))
-    var param = {
-      user_id: userInfo.id
-    }
-    util.pay_purchased_record({}, function(res) {
-      var order_list = res.data.results
-      console.log("获取已购列表" + JSON.stringify(res))
-    })
-  },
-
-  //返回
-  back: function() {
-    util.jumpPage(4, 1)
   },
 
   /**

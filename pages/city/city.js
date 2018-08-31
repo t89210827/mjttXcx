@@ -1,6 +1,9 @@
 // pages/city/city.js
 var vm = null
 var util = require("../../utils/util.js")
+
+var backgroundAudioManager = wx.getBackgroundAudioManager()
+
 Page({
 
   /**
@@ -8,6 +11,9 @@ Page({
    */
   data: {
     city_id: "", //城市id
+    right: "",
+    left: "",
+    desc: "",
   },
 
   /**
@@ -18,7 +24,7 @@ Page({
 
     var city_id = options.city_id
     vm.setData({
-      city_id: city_id
+      city_id: parseInt(city_id)
     })
 
     var screenHeight = getApp().globalData.screenHeight
@@ -40,6 +46,11 @@ Page({
       console.log("景点列表：" + JSON.stringify(res))
       if (res.data.code == 0) {
         var sceneList = res.data.data
+
+        for (var i = 0; i < sceneList.length; i++) {
+          sceneList[i].playStatus = 'stop'
+        }
+
         vm.setData({
           sceneList: sceneList
         })
@@ -47,10 +58,61 @@ Page({
     })
   },
 
+  jumpscenicMapPage: function(e) {
+    var index = e.currentTarget.id
+    var sceneList = vm.data.sceneList
+    // console.log(JSON.stringify(sceneList[index]))
+    if (sceneList[index].playStatus == 'stop') {
+      console.log("播放")
+
+      vm.play(sceneList[index].audios[0])
+
+      backgroundAudioManager.src = sceneList[index].audios[0].audio // 设置了 src 之后会自动播放      
+
+      sceneList[index].playStatus = 'play'
+      for (var i = 0; i < sceneList.length; i++) {
+        if (index != i) {
+          sceneList[i].playStatus = 'stop'
+        }
+      }
+      vm.setData({
+        sceneList: sceneList
+      })
+    } else if (sceneList[index].playStatus == 'pause') {
+      console.log("暂停之后播放")
+      backgroundAudioManager.play()
+      sceneList[index].playStatus = 'play'
+      vm.setData({
+        sceneList: sceneList
+      })
+    } else {
+      console.log("暂停")
+      vm.pause()
+      sceneList[index].playStatus = 'pause'
+      vm.setData({
+        sceneList: sceneList
+      })
+    }
+  },
+
+  //播放
+  play: function(audio) {
+    backgroundAudioManager.play()
+  },
+
+  //暂停
+  pause: function() {
+    var percentage = backgroundAudioManager.currentTime / backgroundAudioManager.duration
+    backgroundAudioManager.pause()
+    vm.progressBar(percentage)
+  },
+
+
   //跳转到地图详情页
   jumpCityMap: function() {
     var city_id = vm.data.city_id
-    util.jumpPage(1, "/pages/scenicMap/scenicMap?city_id=" + city_id)
+    // util.jumpPage(1, "/pages/scenicMap/scenicMap?city_id=" + city_id)
+    util.jumpPage(1, "/pages/webview/webview?city_id=" + city_id)
   },
 
   //跳转到支付页
@@ -68,8 +130,54 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    //播放进度更新
+    backgroundAudioManager.onTimeUpdate(function(res) {
+      console.log("播放进度更新" + backgroundAudioManager.currentTime)
+    })
   },
+
+  progressBar: function(percentage) {
+    var p = Math.round(percentage * 100);
+    var deg = p * 3.6;
+    var right = "";
+    var left = "";
+    var desc = "";
+    if (p > 100 || p < 0) p = 100;
+    if (deg <= 180) {
+
+      right = "transform:rotate(" + (deg - 180) + "deg);"
+      left = "background:#fff;"
+      vm.setData({
+        right: right,
+        left: left,
+      })
+    } else {
+      right = "transform:none;"
+      left = "background:#e31c17;transform:rotate(" + (deg - 360) + "deg);"
+      vm.setData({
+        right: right,
+        left: left,
+      })
+    }
+    // if (desc.innerText) {
+    //   desc = p + "%"
+    // }
+    // if (desc.textContent) {
+    //   desc.textContent = p + "%";
+    // }
+  },
+
+  // setTimeout: function() {
+  //   var g = 0;
+  //   setTimeout(function _a() {
+  //     if (g > 1) return;
+  //     vm.progressBar(g)
+  //     // progressBar(g);
+  //     g += 0.1
+  //     setTimeout(_a, 1000)
+  //   }, 1000)
+  // },
+
 
   /**
    * 生命周期函数--监听页面显示

@@ -4,7 +4,6 @@
     "pages/search/search",
     "pages/country/country",
     "pages/city/city",
-    "pages/cityMap/cityMap",
     "pages/pay/pay",
     "pages/payFail/payFail",
     "pages/myPage/index/index",
@@ -13,7 +12,9 @@
     "pages/myPage/Setting/Setting",
     "pages/selectCity/selectCity",
     "pages/scenicMap/scenicMap",
-    "pages/getUserInfoPage/getUserInfoPage"
+    "pages/getUserInfoPage/getUserInfoPage",
+    "pages/webview/webview",
+    "pages/countryMap/countryMap"
   ],
   "window": {
     "backgroundTextStyle": "light",

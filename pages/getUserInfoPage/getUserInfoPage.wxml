@@ -1,5 +1,6 @@
 <!--pages/getUserInfoPage/getUserInfoPage.wxml-->
 <view style='height:300rpx'></view>
+
 <view class='center-style'>
   <image src='../../images/logo.png' style="width:200rpx;height:200rpx;border-radius:50%;"></image>
 </view>

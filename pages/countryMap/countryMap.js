@@ -1,13 +1,12 @@
-// pages/myPage/order/order.js
+// pages/countryMap/countryMap.js
 var vm = null
-var util = require("../../../utils/util.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    country_id: "", //国家id
   },
 
   /**
@@ -15,32 +14,10 @@ Page({
    */
   onLoad: function(options) {
     vm = this
-    var screenHeight = getApp().globalData.screenHeight
-    var place = getApp().globalData.place //导航栏高度
+    var country_id = options.country_id
     vm.setData({
-      pageTopHeight: screenHeight,
-      allHeight: place,
+      country_id: country_id
     })
-
-    vm.pay_purchased_record()
-  },
-
-  //获取已购列表
-  pay_purchased_record: function() {
-    var userInfo = wx.getStorageSync("userInfo");
-    console.log("用户信息" + JSON.stringify(userInfo))
-    var param = {
-      user_id: userInfo.id
-    }
-    util.pay_purchased_record({}, function(res) {
-      var order_list = res.data.results
-      console.log("获取已购列表" + JSON.stringify(res))
-    })
-  },
-
-  //返回
-  back: function() {
-    util.jumpPage(4, 1)
   },
 
   /**

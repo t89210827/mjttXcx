@@ -28,13 +28,16 @@ Page({
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           console.log("code:" + JSON.stringify(res.code))
           var param = {
-            code: res.code,
+            js_code: res.code,
             encrypted_data: encrypted_data,
             iv: iv,
           }
 
           util.user_login(param, function(res) {
             console.log("登陆" + JSON.stringify(res))
+            var userInfo = res.data.data
+            getApp().storeUserInfo(userInfo)
+            util.jumpPage(5, "/pages/index/index")
           })
 
         }

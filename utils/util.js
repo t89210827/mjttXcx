@@ -1,7 +1,6 @@
 //测试标识
 var TESTMODE = false;
 //服务器地址
-
 var SERVER_URL = "https://api.gowithtommy.com/";
 var DEBUG_URL = "https://result.eolinker.com/rNWDe9142c1437d9ae7066eb3127a25e871437bf3fab09f?uri=";
 var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
@@ -9,24 +8,43 @@ var SERVER_URL = (TESTMODE) ? DEBUG_URL : SERVER_URL;
 //进行接口调用的基本方法
 function wxRequest(url, param, method, successCallback, errorCallback) {
   showLoading()
-  console.log("wxRequest url:" + JSON.stringify(url) + " medhot:" + method + " param:" + JSON.stringify(param))
-  if (!judgeIsAnyNullStr(getApp().globalData.userInfo)) {
-    //user_id未设置
-    if (judgeIsAnyNullStr(param.user_id)) {
-      param.user_id = getApp().globalData.userInfo.id
+  // if (!judgeIsAnyNullStr(getApp().globalData.userInfo)) {
+  //   if (judgeIsAnyNullStr(param.user_id)) {
+  //     param.user_id = getApp().globalData.userInfo.id
+  //   }
+  //   param.token = getApp().globalData.userInfo.token
+  // }
+
+  var header = {}
+  if (url == "https://api.gowithtommy.com/rest/miniapp/pay/purchased_record/") {
+    var userInfo = wx.getStorageSync("userInfo");
+    var user_id = userInfo.id;
+    url = "https://api.gowithtommy.com/rest/miniapp/pay/" + user_id + "/purchased_record/"
+    header = {
+      "content-Type": "application/json",
+      "Authorization": "Token " + userInfo.token
     }
-    //type未设置
-    // if (judgeIsAnyNullStr(param.type)) {
-    //   param.type = getApp().globalData.userInfo.type
-    // }
-    param.token = getApp().globalData.userInfo.token
+    console.log("*-------:" + userInfo.token)
+
+  } else if (url == "https://api.gowithtommy.com/rest/miniapp/invi_code_validation/") {
+    header = {
+      // "content-Type": "multipart/form-data"
+      // "content-Type": "application/json"
+    }
+  } else {
+    header = {
+      "content-Type": "application/json"
+    }
   }
+
+  console.log("wxRequest url:" + JSON.stringify(url) + " medhot:" + method + " param:" + JSON.stringify(param))
+
+
   wx.request({
     url: url,
     data: param,
-    header: {
-      "content-Type": "application/json"
-    },
+
+    header: header,
     // header: { 'content-type': 'application/x-www-form-urlencoded' },
     method: method,
     success: function(ret) {
@@ -34,6 +52,7 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
       successCallback(ret)
     },
     fail: function(err) {
+      errorCallback(err)
       console.log("wxRequest fail:" + JSON.stringify(err))
     },
     complete: function() {
@@ -41,6 +60,21 @@ function wxRequest(url, param, method, successCallback, errorCallback) {
       wx.stopPullDownRefresh() //停止下拉刷新      
     }
   });
+}
+
+//使用解锁码
+function miniapp_invi_code_validation(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/invi_code_validation/', param, "POST", successCallback, errorCallback)
+}
+
+//获取已购列表
+function pay_purchased_record(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/pay/purchased_record/', param, "GET", successCallback, errorCallback)
+}
+
+//获取预支付信息
+function pay_pre_order(param, successCallback, errorCallback) {
+  wxRequest(SERVER_URL + 'rest/miniapp/pay/pre_order/', param, "POST", successCallback, errorCallback)
 }
 
 //登录获取用户信息
@@ -88,8 +122,6 @@ function scene_list(param, successCallback, errorCallback) {
 function payment_price_info(param, successCallback, errorCallback) {
   wxRequest(SERVER_URL + 'rest/miniapp/payment/price_info', param, "GET", successCallback, errorCallback)
 }
-
-
 
 // http://localhost/kwServer/public/rest/miniapp/user/login/
 
@@ -148,8 +180,6 @@ function jumpPage(type, url) {
 function Percentage(number1, number2) {
   return (Math.round(number1 / number2 * 10000) / 100.00 + "%"); // 小数点后两位百分比
 }
-
-
 
 //日期时间转换
 /*
@@ -245,7 +275,6 @@ function showToast(msg, img) {
     })
   }
 }
-
 
 //展示toast
 // function showToast(msg, img) {
@@ -861,4 +890,7 @@ module.exports = {
   scene_list: scene_list, //景点列表
   payment_price_info: payment_price_info, //解锁价格信息列表
   user_login: user_login, //登录获取用户信息
+  pay_pre_order: pay_pre_order, //获取预支付信息
+  pay_purchased_record: pay_purchased_record, //获取已购列表
+  miniapp_invi_code_validation: miniapp_invi_code_validation, //使用解锁码
 }

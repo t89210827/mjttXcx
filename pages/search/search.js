@@ -14,8 +14,9 @@ Page({
     areaInitialIndex: 'a', //地区索引
     areaInitial_flag: false, //屏幕首字母显示控制器
     showArea: "", //显示的字母
-    inputFocus: false, //输入框焦点  true:聚焦  false:失焦
+    // inputFocus: false, //输入框焦点  true:聚焦  false:失焦
     countryJson: {}, //城市列表
+    keyword: "",
   },
 
   /**
@@ -55,6 +56,8 @@ Page({
     // })
 
   },
+
+
 
   //返回
   back: function() {
@@ -124,31 +127,60 @@ Page({
   },
 
   //输入框聚焦
-  focus: function(e) {
-    vm.setData({
-      inputFocus: true
-    })
-  },
+  // focus: function(e) {
+  //   vm.setData({
+  //     inputFocus: true
+  //   })
+  // },
 
   //键盘输入时触发
   bindinput: function(e) {
     console.log("键盘输入时触发" + JSON.stringify(e))
     var keyword = e.detail.value
+    vm.setData({
+      keyword: keyword
+    })
+    vm.search_global(keyword)
+  },
+
+  //存入缓存
+  searchHistory: function(e) {
+    // console.log("键盘输入时触发" + JSON.stringify(e))
+    // var keyword = e.detail.value
     var searchHistory = getApp().globalData.searchHistory
     searchHistory.unshift(keyword)
     getApp().globalData.searchHistory = searchHistory
     vm.setData({
       searchHistory: searchHistory
     })
-    vm.search_global(keyword)
+    // vm.search_global(keyword)
+  },
+
+  //跳转到搜索结果页
+  jumpSearchRet: function(e) {
+    var sceneType = e.currentTarget.id
+    console.log("------" + JSON.stringify(e))
+    if (sceneType == 1) {
+      var city_id = e.currentTarget.dataset.cityid
+      vm.searchHistory()
+      util.jumpPage(1, "/pages/city/city?city_id=" + city_id)
+    } else if (sceneType == 2) {
+      var scenic_id = e.currentTarget.dataset.scenicid
+      vm.searchHistory()
+      util.jumpPage(1, "/pages/webview/webview?scenic_id=" + scenic_id)
+    } else {
+      var country_id = e.currentTarget.dataset.countryid
+      vm.searchHistory()
+      util.jumpPage(1, "/pages/country/country?country_id=" + country_id)
+    }
   },
 
   //输入框失去焦点时
-  loseFocus: function(e) {
-    vm.setData({
-      inputFocus: false
-    })
-  },
+  // loseFocus: function(e) {
+  //   vm.setData({
+  //     inputFocus: false
+  //   })
+  // },
 
   //全局搜索
   search_global: function(keyword) {

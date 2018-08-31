@@ -24,7 +24,6 @@ Page({
   back: function() {
     util.jumpPage(4, 1)
   },
-
   showPopup() {
     let popupComponent = this.selectComponent('.J_Popup');
     popupComponent && popupComponent.show();
@@ -32,6 +31,27 @@ Page({
   hidePopup() {
     let popupComponent = this.selectComponent('.J_Popup');
     popupComponent && popupComponent.hide();
+  },
+
+  //邀请码
+  invitationCode: function(e) {
+    console.log(JSON.stringify(e.detail.value))
+    var value = e.detail.value
+    vm.setData({
+      value: value
+    })
+  },
+
+  miniapp_invi_code_validation: function() {
+    var userInfo = wx.getStorageSync("userInfo");
+    var user_id = userInfo.id
+    var param = {
+      user_id: user_id,
+      invi_code: vm.data.value
+    }
+    util.miniapp_invi_code_validation(param, function(res) {
+
+    })
   },
 
   /**
