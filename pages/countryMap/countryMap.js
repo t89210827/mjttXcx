@@ -14,9 +14,9 @@ Page({
    */
   onLoad: function(options) {
     vm = this
-    var country_id = options.country_id
+    // var country_id = options.country_id
     vm.setData({
-      country_id: country_id
+      country_id: 40
     })
   },
 

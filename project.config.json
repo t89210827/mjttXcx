@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -117,6 +117,12 @@
 					"name": "webview",
 					"pathName": "pages/webview/webview",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "国家地图页",
+					"pathName": "pages/countryMap/countryMap",
+					"query": "country_id=13"
 				}
 			]
 		}

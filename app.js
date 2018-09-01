@@ -14,7 +14,7 @@ App({
       var screenWidth = res.screenWidth //屏幕宽度
       var proportion = screenWidth / 750 //1px = ?rpx
       var place = screenHeight + (100 * proportion) //导航栏高度
-      console.log("屏幕宽度" + JSON.stringify(place)) //状态栏加导航栏高度
+      // console.log("屏幕宽度" + JSON.stringify(place)) //状态栏加导航栏高度
 
       vm.globalData.screenHeight = screenHeight
       vm.globalData.windowHeight = windowHeight
